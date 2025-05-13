@@ -24,7 +24,7 @@
 
             <!-- Navigasi Kanan -->
             <div class="d-flex align-items-center">
-                <a href="../account.php" class="me-3">
+                <a href="login" class="me-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="black" class="bi bi-person"
                         viewBox="0 0 16 16">
                         <path
