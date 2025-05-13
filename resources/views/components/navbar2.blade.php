@@ -16,8 +16,8 @@
 
             <!-- Logo Tengah -->
             <div class="logo-popout">
-                <a class="navbar-brand mx-auto position-absolute start-50 translate-middle-x" href="../index.php">
-                    <img src="{{ asset('pictures/logo.png') }}" style="background-color: white; border-radius: 65px;">
+                <a class="navbar-brand mx-auto start-50 translate-middle-x" href="../index.php">
+                    <img src="{{ asset('pictures/logo.png') }}" style="background-color: white; border-radius: 65px; width: 80px;">
                 </a>
             </div>
 
@@ -43,15 +43,4 @@
             </div>
         </nav>
     </div>
-    <script>
-        window.addEventListener("scroll", function() {
-            const header = document.querySelector(".header");
-            if (window.scrollY > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        });
-    </script>
-
 </header>
