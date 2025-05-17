@@ -29,7 +29,7 @@ Route::get('/cartView', [CartController::class, 'showCart'])->name('cartView');
 
 Route::get('/shopView', [ShopController::class, 'showShop'])->name('shopView');
 
-// euy
+// euy rr
 // Group untuk admin
 Route::prefix('admin')->group(function () {
     // Hanya bisa diakses oleh admin

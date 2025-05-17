@@ -17,7 +17,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Shopping Cart</title>
 </head>
-<!-- euy -->
+<!-- euy ir -->
 <body class="min-h-screen flex flex-col items-center justify-center bg-gray-50" style="padding-top: 50px;">
     <x-navbar2 />
     <!-- Breadcrumb Section Begin -->

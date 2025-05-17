@@ -19,7 +19,7 @@
             width: 6px;
             height: 6px;
         }
-/* euy */
+/* euy jir*/
         .scrollbar-thin::-webkit-scrollbar-thumb {
             background-color: #cbd5e1;
             border-radius: 3px;
