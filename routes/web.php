@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShopController;
 
@@ -37,3 +39,5 @@ Route::prefix('admin')->group(function () {
 });
 // Redirect ke halaman login jika user tidak terautentikasi
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
+Route::get('/adminView', [AdminController::class, 'showAdminDashboard'])->name('adminView');
+Route::get('/productsView', [ProductsController::class, 'showProductsDashboard'])->name('productsView');
