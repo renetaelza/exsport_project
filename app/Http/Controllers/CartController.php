@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
-class ShopController extends Controller
+class CartController extends Controller
 {
-    public function showShop()
-    {
-        return view("shop");
+    public function showCart () {
+        return view ("cart");
     }
 }
-// uey ee
+// euy rr
