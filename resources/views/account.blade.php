@@ -21,7 +21,6 @@
         <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
         <p><strong>Phone:</strong> {{ Auth::user()->phone }}</p>
         <p><strong>Address:</strong> {{ Auth::user()->address }}</p>
-        <p><strong>Registered At:</strong> {{ Auth::user()->created_at->format('d M Y') }}</p>
 
         <form action="{{ route('logout') }}" method="POST">
             @csrf

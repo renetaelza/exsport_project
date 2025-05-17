@@ -36,11 +36,12 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\PreventBackHistory::class,
         ],
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -68,9 +69,9 @@ class Kernel extends HttpKernel
 
     // app/Http/Kernel.php
 
-protected $routeMiddleware = [
-    // Middleware lainnya
-    'admin' => \App\Http\Middleware\AdminMiddleware::class,
-];
-
+    protected $routeMiddleware = [
+        // Middleware lainnya
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'notAdmin' => \App\Http\Middleware\RedirectIfAdmin::class,
+    ];
 }

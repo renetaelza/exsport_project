@@ -17,13 +17,13 @@ Route::get('/landing', function () {
 })->name('landing');
 
 // LOGIN REGISTER USER
-Route::get('/loginUser', [LoginController::class, 'showLoginForm'])->name('loginUser');
+Route::get('/loginUser', [LoginController::class, 'showLoginForm'])->middleware('notAdmin')->name('loginUser');
 Route::post('/loginUser', [LoginController::class, 'login'])->name('user.login');
 
-Route::get('/registerUser', [RegisterController::class, 'showRegisterForm'])->name('registerUser');
+Route::get('/registerUser', [RegisterController::class, 'showRegisterForm'])->middleware('notAdmin')->name('registerUser');
 Route::post('/registerUser', [RegisterController::class, 'create'])->name('user.create');
 
-Route::get('/account', [LoginController::class, 'showAccount'])->name('account');
+Route::get('/account', [LoginController::class, 'showAccount'])->middleware('notAdmin')->name('account');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
