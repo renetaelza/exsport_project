@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
-
+<!-- euy -->
 <body>
     <x-navbar2 />
     <div class="max-w-[1200px] mx-auto flex flex-col lg:flex-row px-4 py-6 gap-6">
