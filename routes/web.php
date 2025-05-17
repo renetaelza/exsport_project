@@ -4,17 +4,16 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ShopController;
+
 
 //LANDING PAGE
 Route::get('/', function () {
     return view('landing');
 });
-
-Route::get('/landing', function () {
-    return view('landing');
-})->name('landing');
 
 // LOGIN REGISTER USER
 Route::get('/loginUser', [LoginController::class, 'showLoginForm'])->name('loginUser');
@@ -25,6 +24,10 @@ Route::post('/registerUser', [RegisterController::class, 'create'])->name('user.
 
 Route::get('/account', [LoginController::class, 'showAccount'])->name('account');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/cartView', [CartController::class, 'showCart'])->name('cartView');
+
+Route::get('/shopView', [ShopController::class, 'showShop'])->name('shopView');
 
 
 // Group untuk admin
