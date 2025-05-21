@@ -16,6 +16,7 @@ use App\Http\Controllers\ShopController;
 Route::get('/', function () {
     return view('landing');
 });
+Route::get('/', [ShopController::class, 'shopView']);
 
 // LOGIN REGISTER USER
 Route::get('/loginUser', [LoginController::class, 'showLoginForm'])->middleware('notAdmin')->name('loginUser');
@@ -27,11 +28,11 @@ Route::post('/registerUser', [RegisterController::class, 'create'])->name('user.
 Route::get('/account', [LoginController::class, 'showAccount'])->middleware('notAdmin')->name('account');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// SHOP CART
 Route::get('/cartView', [CartController::class, 'showCart'])->name('cartView');
 
-Route::get('/shopView', [ShopController::class, 'showShop'])->name('shopView');
+Route::get('/shop', [ShopController::class, 'shopView'])->name('shopView');
 
-// euy rr
 // Group untuk admin
 Route::prefix('admin')->group(function () {
     // Hanya bisa diakses oleh admin

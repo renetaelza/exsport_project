@@ -19,7 +19,7 @@
             width: 6px;
             height: 6px;
         }
-/* euy jir*/
+
         .scrollbar-thin::-webkit-scrollbar-thumb {
             background-color: #cbd5e1;
             border-radius: 3px;
@@ -31,165 +31,88 @@
     <x-navbar2 />
     <div class="hero">
         <div class="texthero-shop">
-            <h4>Shop All</h4>
-            <p>At Exsport, we believe in turning everyday moments into extraordinary experiences. Our journey began with a simple idea: to create bags that blend style, functionality, and joy. With over 70 vibrant flavors, each bag is a testament to our passion for creativity and adventure.</p>
-            <br>
+            <h1>All Products</h1>
         </div>
         <div>
-            <img src="{{ asset('storage/shop all (3).jpg') }}" alt="" style="width: 4500px; height: 450px;">
+            <img src="{{ asset('products/banner2.png') }}" alt="" style="width: 4500px; height: 500px; object-fit: fill;">
         </div>
     </div>
 
-    <div class="max-w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 2xl:px-24 py-6">
-        <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
-            <div class="flex items-center gap-2 flex-wrap">
-                <label class="text-sm select-none" for="filter">Filter:</label>
-                <div class="relative inline-block text-left">
-                    <select aria-label="Filter by Color" class="border border-gray-300 rounded-md text-sm py-1 pl-2 pr-8 cursor-pointer focus:outline-none focus:ring-1 focus:ring-black focus:border-black" id="filter">
-                        <option>Color</option>
-                    </select>
+    <form id="filterForm" method="GET" action="{{route('shopView')}}" class="flex justify-center items-center gap-4 py-6">
+        {{-- Dropdown Category --}}
+        <select name="category" id="categorySelect" class="focus:outline-none focus:ring-0 focus:border-none">
+            <option value="">All</option>
+            @foreach($categories as $cat)
+            @php
+            $displayCat = ucwords(str_replace('_', ' ', $cat));
+            @endphp
+            <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
+                {{ $displayCat }}
+            </option>
+            @endforeach
+        </select>
 
-                    <!-- Dropdown -->
-                    <div class="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 shadow-lg rounded-md z-20 hidden" id="colorDropdown">
-                        <div class="flex justify-between items-center border-b border-gray-200 px-4 py-2 text-sm select-none">
-                            <span class="text-[13px]">2 selected</span>
-                            <button class="text-blue-600 focus:outline-none text-[12px]" id="resetColors" type="button">Reset</button>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4 p-4 max-h-60 scrollbar-thin">
-                            <!-- Color options -->
-                            <label class="flex flex-col items-center">
-                                <input class="hidden peer" type="checkbox" />
-                                <span class="w-7 h-7 border mb-1 color blue peer-checked:ring-2 ring-blue-700 block"></span>
-                                <span class="text-[12px]">Blue</span>
-                            </label>
-                            <label class="flex flex-col items-center cursor-pointer select-none">
-                                <input checked class="hidden peer" type="checkbox" />
-                                <span class="w-7 h-7 border mb-1 color green peer-checked:ring-2 ring-green-700 block"></span>
-                                <span class="text-[12px]">Green</span>
-                            </label>
-                            <label class="flex flex-col items-center cursor-pointer select-none">
-                                <input checked class="hidden peer" type="checkbox" />
-                                <span class="w-7 h-7 border mb-1 color yellow peer-checked:ring-2 ring-yellow-700 block"></span>
-                                <span class="text-[12px]">Yellow</span>
-                            </label>
-                            <label class="flex flex-col items-center cursor-pointer select-none">
-                                <input checked class="hidden peer" type="checkbox" />
-                                <span class="w-7 h-7 border mb-1 color White peer-checked:ring-2 ring-hite-700 block"></span>
-                                <span class="text-[12px]">White</span>
-                            </label>
-                            <label class="flex flex-col items-center cursor-pointer select-none">
-                                <input checked class="hidden peer" type="checkbox" />
-                                <span class="w-7 h-7 border mb-1 color pink peer-checked:ring-2 ring-pink-700 block"></span>
-                                <span class="text-[12px]">Pink</span>
-                            </label>
-                            <label class="flex flex-col items-center cursor-pointer select-none">
-                                <input checked class="hidden peer" type="checkbox" />
-                                <span class="w-7 h-7 border mb-1 color purple peer-checked:ring-2 ring-purple-700 block"></span>
-                                <span class="text-[12px]">Purple</span>
-                            </label>
-                            <label class="flex flex-col items-center cursor-pointer select-none">
-                                <input checked class="hidden peer" type="checkbox" />
-                                <span class="w-7 h-7 border mb-1 color red peer-checked:ring-2 ring-red-700 block"></span>
-                                <span class="text-[12px]">Red</span>
-                            </label>
-                            <!-- Tambah warna lain seperti di program 2 jika perlu -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Tag ini akan diisi dengan warna yang dipilih -->
-                <div id="selectedColorsDisplay" class="border border-black rounded-full py-1 px-4 text-xs font-semibold tracking-wide select-none">
-                    COLOR
-                </div>
 
-            </div>
-            <div class="flex items-center gap-2">
-                <label class="text-sm select-none" for="sort">Sort by:</label>
-                <select id="sort" class="border border-gray-300 rounded-md text-sm py-1 pl-2 pr-8 cursor-pointer focus:outline-none focus:ring-1 focus:ring-black focus:border-black">
-                    <option>Featured</option>
-                </select>
-                <span class="pointer-events-none absolute right-6 top-[calc(50%-0.5em)] text-gray-600 text-xs" style="position: relative;">
-                    <i class="fas fa-chevron-down"></i>
-                </span>
-            </div>
+        {{-- Input Search --}}
+        <div class="flex items-center border border-gray-300 rounded-full px-4 py-2 w-full max-w-md">
+            <i class="bi bi-search text-gray-500 mr-2"></i>
+            <input type="text" name="search" id="searchInput" placeholder="Search products..."
+                value="{{ request('search') }}"
+                class="w-full border-none outline-none focus:outline-none focus:ring-0 focus:border-none text-sm bg-transparent text-gray-700">
         </div>
-    </div>
-    <!-- Overlay
-    <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-40 z-0"></div> -->
+    </form>
 
-    <div class="product-section">
-        <div class="tabs">
-            <button class="tab active">Most Popular</button>
-            <button class="tab">New Arrival</button>
-            <button class="tab">Backpack</button>
-            <button class="tab">Pouch</button>
-        </div>
-
+    <div id="product-section" class="product-section" style="margin-top: -30px;">
         <div class="product-grid">
+            @foreach($products->take(5) as $product)
             <div class="product-item">
+
+                @php
+                $productNameForFile = str_replace(' ', '-', $product->name);
+                $colors = $product->colour;
+
+                $firstColor = count($colors) > 0 ? strtolower($colors[0]) : null;
+                $mainImageBase = $firstColor ? $productNameForFile . '_' . $firstColor : $productNameForFile;
+
+                if (file_exists(public_path('products/' . $mainImageBase . '.png'))) {
+                $imagePath = '/products/' . $mainImageBase . '.png';
+                } elseif (file_exists(public_path('products/' . $mainImageBase . '.jpg'))) {
+                $imagePath = '/products/' . $mainImageBase . '.jpg';
+                } else {
+                $imagePath = '/products/default.png';
+                }
+
+                @endphp
+
                 <div class="product-image">
-                    <img src="{{ asset('storage/holiday_bag (1).jpg') }}"
-                        alt="The Dutchess" class="w-full rounded-md" width="400" height="250" />
+                    <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image">
                 </div>
-                <h3 class="product-title">The Dutchess</h3>
-                <div class="product-subtitle">6.75-Quart Cast-Iron Dutch Oven</div>
-                <div class="product-price">$205</div>
+                <h3 class="product-title">{{ $product->name }}</h3>
+                <div class="product-price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
                 <div class="color-options">
-                    <button class="color pink" data-color="pink"></button>
-                    <button class="color blue" data-color="blue"></button>
-                    <button class="color yellow" data-color="yellow"></button>
-                    <button class="color black" data-color="black"></button>
-                    <button class="color white" data-color="white"></button>
-                    <button class="color green" data-color="green"></button>
+                    @foreach($colors as $color)
+                    @php
+                    $colorLower = strtolower($color);
+                    $colorImageBase = $productNameForFile . '_' . $colorLower;
+
+                    if (file_exists(public_path('products/' . $colorImageBase . '.png'))) {
+                    $colorImage = '/products/' . $colorImageBase . '.png';
+                    } elseif (file_exists(public_path('products/' . $colorImageBase . '.jpg'))) {
+                    $colorImage = '/products/' . $colorImageBase . '.jpg';
+                    } else {
+                    $colorImage = '/products/default.png';
+                    }
+
+                    @endphp
+                    <span class="color {{ $color }}"
+                        data-color="{{ $color }}"
+                        data-image="{{ $colorImage }}"
+                        onclick="changeImage('{{ $product->id }}', this)">
+                    </span>
+                    @endforeach
                 </div>
             </div>
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="{{ asset('storage/holiday_bag (2).jpg') }}" alt="">
-                </div>
-                <h3 class="product-title">The Dutchess</h3>
-                <div class="product-subtitle">6.75-Quart Cast-Iron Dutch Oven</div>
-                <div class="product-price">$205</div>
-                <div class="color-options">
-                    <button class="color pink" data-color="pink"></button>
-                    <button class="color blue" data-color="blue"></button>
-                    <button class="color yellow" data-color="yellow"></button>
-                    <button class="color black" data-color="black"></button>
-                    <button class="color white" data-color="white"></button>
-                    <button class="color green" data-color="green"></button>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="{{ asset('storage/holiday_bag (3).jpg') }}" alt="">
-                </div>
-                <h3 class="product-title">The Dutchess</h3>
-                <div class="product-subtitle">6.75-Quart Cast-Iron Dutch Oven</div>
-                <div class="product-price">$205</div>
-                <div class="color-options">
-                    <button class="color pink" data-color="pink"></button>
-                    <button class="color blue" data-color="blue"></button>
-                    <button class="color yellow" data-color="yellow"></button>
-                    <button class="color black" data-color="black"></button>
-                    <button class="color white" data-color="white"></button>
-                    <button class="color green" data-color="green"></button>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="{{ asset('storage/holiday_bag (4).jpg') }}" alt="">
-                </div>
-                <h3 class="product-title">The Dutchess</h3>
-                <div class="product-subtitle">6.75-Quart Cast-Iron Dutch Oven</div>
-                <div class="product-price">$205</div>
-                <div class="color-options">
-                    <button class="color pink" data-color="pink"></button>
-                    <button class="color blue" data-color="blue"></button>
-                    <button class="color yellow" data-color="yellow"></button>
-                    <button class="color black" data-color="black"></button>
-                    <button class="color white" data-color="white"></button>
-                    <button class="color green" data-color="green"></button>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -197,76 +120,43 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const filterSelect = document.getElementById("filter");
-        const dropdown = document.getElementById("colorDropdown");
-        const checkboxes = dropdown.querySelectorAll("input[type='checkbox']");
-        const resetButton = document.getElementById("resetColors");
-        const selectedCountDisplay = dropdown.querySelector("span");
+    document.addEventListener('DOMContentLoaded', function() {
+        const categorySelect = document.getElementById('categorySelect');
+        const searchInput = document.getElementById('searchInput');
+        const filterForm = document.getElementById('filterForm');
 
-        // Toggle dropdown ketika select "Color" diklik
-        filterSelect.addEventListener("click", function(e) {
-            e.preventDefault();
-            dropdown.classList.toggle("hidden");
+        categorySelect.addEventListener('change', function() {
+            filterForm.submit();
         });
 
-        // Update jumlah warna yang dipilih
-        function updateSelectedCount() {
-            const selectedCount = [...checkboxes].filter(cb => cb.checked).length;
-            selectedCountDisplay.textContent = `${selectedCount} selected`;
-        }
+        let typingTimer;
+        const doneTypingInterval = 400;
 
-        // Inisialisasi: update count saat load
-        updateSelectedCount();
-
-        // Tambahkan event listener ke setiap checkbox
-        checkboxes.forEach(cb => {
-            cb.addEventListener("change", updateSelectedCount);
+        searchInput.addEventListener('input', function() {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                filterForm.submit();
+            }, doneTypingInterval);
         });
 
-        // Reset filter
-        resetButton.addEventListener("click", function() {
-            checkboxes.forEach(cb => {
-                cb.checked = false;
-            });
-            updateSelectedCount();
-        });
-
-        const displayDiv = document.getElementById('selectedColorsDisplay');
-
-        function updateSelectedColors() {
-            const selected = [];
-            checkboxes.forEach((cb, index) => {
-                if (cb.checked) {
-                    const label = cb.closest('label');
-                    const colorName = label.querySelector('span.text-xs').innerText;
-                    selected.push(colorName);
-                }
-            });
-
-            if (selected.length === 0) {
-                displayDiv.textContent = 'COLOR';
-            } else {
-                displayDiv.textContent = selected.join(', ');
-            }
-        }
-
-        // Inisialisasi saat halaman dimuat
-        updateSelectedColors();
-
-        // Tambahkan event listener
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', updateSelectedColors);
-        });
-
-        // Klik di luar dropdown menutup dropdown
-        document.addEventListener("click", function(e) {
-            if (!dropdown.contains(e.target) && !filterSelect.contains(e.target)) {
-                dropdown.classList.add("hidden");
-            }
+        searchInput.addEventListener('keydown', function() {
+            clearTimeout(typingTimer);
         });
     });
-</script>
 
+
+    function changeImage(productId, element) {
+        const newImage = element.getAttribute('data-image');
+        const imgElement = document.getElementById('product-image-' + productId);
+
+        if (imgElement && imgElement.src !== location.origin + newImage) {
+            imgElement.classList.add('fade-out');
+            setTimeout(() => {
+                imgElement.src = newImage;
+                imgElement.classList.remove('fade-out');
+            }, 300);
+        }
+    }
+</script>
 
 </html>
