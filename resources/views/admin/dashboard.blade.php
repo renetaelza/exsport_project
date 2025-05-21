@@ -1,9 +1,9 @@
-@extends('admin.layouts.master') {{-- atau layout admin jika kamu punya --}}
+@extends('mantis') {{-- atau layout admin jika kamu punya --}}
 
 @section('content')
 <div class="container mt-4">
     <h1 class="h3 mb-4 text-uppercase fw-bold text-gray-800">Dashboard</h1>
-    
+
     <div class="row">
 
         <!-- Total Orders -->
@@ -74,6 +74,26 @@
             </div>
         </div>
 
+    </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="bi bi-graph-up"></i>
+                    Area Chart Example
+                </div>
+                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    Bar Chart Example
+                </div>
+                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

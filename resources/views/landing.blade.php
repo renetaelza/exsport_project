@@ -22,7 +22,7 @@
                 <img src="{{ asset('pictures/banner3.png') }}" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('pictures/banner2.jpg') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('pictures/banner2.png') }}" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
                 <img src="{{ asset('pictures/banner1.jpg') }}" class="d-block w-100" alt="...">
@@ -59,72 +59,59 @@
         </div>
 
         <div class="product-grid">
+            @foreach($products->take(5) as $product)
             <div class="product-item">
+
+                @php
+                $productNameForFile = str_replace(' ', '-', $product->name);
+                $colors = $product->colour;
+
+                $firstColor = count($colors) > 0 ? strtolower($colors[0]) : null;
+                $mainImageBase = $firstColor ? $productNameForFile . '_' . $firstColor : $productNameForFile;
+
+                if (file_exists(public_path('products/' . $mainImageBase . '.png'))) {
+                $imagePath = '/products/' . $mainImageBase . '.png';
+                } elseif (file_exists(public_path('products/' . $mainImageBase . '.jpg'))) {
+                $imagePath = '/products/' . $mainImageBase . '.jpg';
+                } else {
+                $imagePath = '/products/default.png';
+                }
+
+                @endphp
+
                 <div class="product-image">
-                    <img src="https://via.placeholder.com/400x500" alt="">
+                    <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image">
                 </div>
-                <h3 class="product-title">The Dutchess</h3>
-                <div class="product-subtitle">6.75-Quart Cast-Iron Dutch Oven</div>
-                <div class="product-price">$205</div>
+                <h3 class="product-title">{{ $product->name }}</h3>
+                <div class="product-price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
                 <div class="color-options">
-                    <span class="color green"></span>
-                    <span class="color pink"></span>
-                    <span class="color blue"></span>
-                    <span class="color yellow"></span>
-                    <span class="color black"></span>
-                    <span class="color white"></span>
+                    @foreach($colors as $color)
+                    @php
+                    $colorLower = strtolower($color);
+                    $colorImageBase = $productNameForFile . '_' . $colorLower;
+
+                    if (file_exists(public_path('products/' . $colorImageBase . '.png'))) {
+                    $colorImage = '/products/' . $colorImageBase . '.png';
+                    } elseif (file_exists(public_path('products/' . $colorImageBase . '.jpg'))) {
+                    $colorImage = '/products/' . $colorImageBase . '.jpg';
+                    } else {
+                    $colorImage = '/products/default.png';
+                    }
+
+                    @endphp
+                    <span class="color {{ $color }}"
+                        data-color="{{ $color }}"
+                        data-image="{{ $colorImage }}"
+                        onclick="changeImage('{{ $product->id }}', this)">
+                    </span>
+                    @endforeach
                 </div>
             </div>
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/400x500" alt="">
-                </div>
-                <h3 class="product-title">The Dutchess</h3>
-                <div class="product-subtitle">6.75-Quart Cast-Iron Dutch Oven</div>
-                <div class="product-price">$205</div>
-                <div class="color-options">
-                    <span class="color green"></span>
-                    <span class="color pink"></span>
-                    <span class="color blue"></span>
-                    <span class="color yellow"></span>
-                    <span class="color black"></span>
-                    <span class="color white"></span>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/400x500" alt="">
-                </div>
-                <h3 class="product-title">The Dutchess</h3>
-                <div class="product-subtitle">6.75-Quart Cast-Iron Dutch Oven</div>
-                <div class="product-price">$205</div>
-                <div class="color-options">
-                    <span class="color green"></span>
-                    <span class="color pink"></span>
-                    <span class="color blue"></span>
-                    <span class="color yellow"></span>
-                    <span class="color black"></span>
-                    <span class="color white"></span>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/400x500" alt="">
-                </div>
-                <h3 class="product-title">The Dutchess</h3>
-                <div class="product-subtitle">6.75-Quart Cast-Iron Dutch Oven</div>
-                <div class="product-price">$205</div>
-                <div class="color-options">
-                    <span class="color green"></span>
-                    <span class="color pink"></span>
-                    <span class="color blue"></span>
-                    <span class="color yellow"></span>
-                    <span class="color black"></span>
-                    <span class="color white"></span>
-                </div>
-            </div>
+            @endforeach
         </div>
-        <button class="shop-all-btn">Shop All</button>
+        <a href="{{ route('shopView') }}">
+            <button class="shop-all-btn">Shop All</button>
+        </a>
     </div>
 
     <div class="why-container">
@@ -225,12 +212,12 @@
         </div>
     </div>
 
-    <section class="team spad">
-        <div class="container">
+    <section class="team" style="margin-left: 30px; margin-right: 30px;">
+        <div class="outlet-container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h3 style="font-weight: bold; justify-content: center; align-items: center;">Informasi Outlet</h3>
+                        <h3 style="font-weight: bold; justify-content: center; align-items: center; padding-bottom: 30px;">Informasi Outlet</h3>
                     </div>
                 </div>
             </div>
@@ -314,6 +301,19 @@
                 popupVideo.currentTime = 0;
             }
         };
+    }
+
+    function changeImage(productId, element) {
+        const newImage = element.getAttribute('data-image');
+        const imgElement = document.getElementById('product-image-' + productId);
+
+        if (imgElement && imgElement.src !== location.origin + newImage) {
+            imgElement.classList.add('fade-out');
+            setTimeout(() => {
+                imgElement.src = newImage;
+                imgElement.classList.remove('fade-out');
+            }, 300);
+        }
     }
 </script>
 

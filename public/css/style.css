@@ -91,6 +91,7 @@
 .product-section {
     padding: 50px 20px;
     text-align: center;
+    overflow-x: auto;
 }
 
 .tabs {
@@ -111,9 +112,10 @@
 
 .product-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 30px;
     justify-content: center;
+    overflow-x: auto;
 }
 
 .product-item {
@@ -129,9 +131,16 @@
 }
 
 .product-image img {
-    width: 100%;
-    height: 100%;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+    width: 300px;
+    height: 400px;
     object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-image img.fade-out {
+    opacity: 0;
 }
 
 .product-title {
@@ -152,6 +161,15 @@
     margin: 10px 0;
 }
 
+.fade {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.fade.show {
+    opacity: 1;
+}
+
 .color-options {
     display: flex;
     justify-content: center;
@@ -168,7 +186,15 @@
 }
 
 .color.green {
-    background: #2e6f57;
+    background: green;
+}
+
+.color.red {
+    background: red;
+}
+
+.color.orange {
+    background: rgb(255, 106, 0);
 }
 
 .color.pink {
@@ -176,11 +202,11 @@
 }
 
 .color.blue {
-    background: #2e3e91;
+    background: blue;
 }
 
 .color.yellow {
-    background: #f2b544;
+    background: yellow;
 }
 
 .color.black {
@@ -189,6 +215,14 @@
 
 .color.white {
     background: #fff;
+}
+
+.color.purple {
+    background-color: purple;
+}
+
+.color:hover {
+    border: 2px solid #333;
 }
 
 .color.stripes {
@@ -440,8 +474,8 @@
 }
 
 .team__item img {
-    width: 300px;
-    height: 400px;
+    width: 100px;
+    height: 200px;
     margin-bottom: 25px;
 }
 
@@ -1022,8 +1056,9 @@ textarea:focus {
 }
 
 .texthero-shop {
-    background-color: #ec4498;
-    height: 450px;
+    background-color: #265da5;
+    height: 500px;
+    width: 2000px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1032,11 +1067,14 @@ textarea:focus {
     padding: 20px;
 }
 
-.texthero-shop h4 {
-    font-size: 28px;
+.texthero-shop h1 {
+    color: white;
+    font-size: 60px;
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
+    text-align: left;
+    padding-left: 30px;
 }
 
 .texthero-shop p {
@@ -1072,6 +1110,10 @@ textarea:focus {
 
 .btn-info:hover {
     background-color: #0d392a;
+}
+
+.outlet-container{
+    text-align: center;
 }
 
 .team {
