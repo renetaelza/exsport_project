@@ -1,331 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- [Head] start -->
-
 <head>
     <title>EXSPORT BAGS ADMIN</title>
-    <!-- [Meta] -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
-    <meta name="keywords" content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
-    <meta name="author" content="CodedThemes">
+    <meta name="description" content="EXSPORT BAGS ADMIN DASHBOARD">
+    <meta name="author" content="Your Name">
 
-    <!-- [Favicon] icon -->
-    <link rel="icon" href="{{ asset('template/dist') }}/assets/images/favicon.svg" type="image/x-icon"> <!-- [Google Font] Family -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
-    <!-- [Tabler Icons] https://tablericons.com -->
-    <link rel="stylesheet" href="{{ asset('template/dist') }}/assets/fonts/tabler-icons.min.css">
-    <!-- [Feather Icons] https://feathericons.com -->
-    <link rel="stylesheet" href="{{ asset('template/dist') }}/assets/fonts/feather.css">
-    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
-    <link rel="stylesheet" href="{{ asset('template/dist') }}/assets/fonts/fontawesome.css">
-    <!-- [Material Icons] https://fonts.google.com/icons -->
-    <link rel="stylesheet" href="{{ asset('template/dist') }}/assets/fonts/material.css">
-    <!-- [Template CSS Files] -->
-    <link rel="stylesheet" href="{{ asset('template/dist') }}/assets/css/style.css" id="main-style-link">
-    <link rel="stylesheet" href="{{ asset('template/dist') }}/assets/css/style-preset.css">
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('template/dist/assets/images/favicon.svg') }}" type="image/x-icon">
 
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="{{ asset('template/dist/assets/fonts/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/assets/fonts/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/assets/fonts/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/assets/fonts/material.css') }}">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ asset('template/dist/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/dist/assets/css/style-preset.css') }}">
 </head>
-<!-- [Head] end -->
-<!-- [Body] Start -->
 
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
-    <!-- [ Pre-loader ] start -->
+    <!-- Loader -->
     <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>
         </div>
     </div>
-    <!-- [ Pre-loader ] End -->
-    <!-- [ Sidebar Menu ] start -->
+
+    <!-- Sidebar -->
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="../dashboard/index.html" class="b-brand text-primary">
-                    <!-- ========   Change your logo from here   ============ -->
-                    <img src="{{ asset('pictures/logo.png') }}"
-                        class="img-fluid"
-                        style="background-color: white; border-radius: 10px; width: 30px; height: auto;">
-
-
+                <a href="{{ url('/dashboard') }}" class="b-brand text-primary">
+                    <img src="{{ asset('pictures/logo.png') }}" class="img-fluid" style="background-color: white; border-radius: 10px; width: 30px;">
                     <span>EXSPORT BAGS ADMIN</span>
                 </a>
             </div>
-            <div class="navbar-content">
-                <ul class="pc-navbar">
-                    <li class="pc-item">
-                    <a href="{{route('adminView')}}" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
-                            <span class="pc-mtext">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="pc-item pc-caption">
-                        <label>Products</label>
-                        <i class="ti ti-dashboard"></i>
-                    </li>
-                    <li class="pc-item">
-                        <a href="{{route('productsView')}}" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-typography"></i></span>
-                            <span class="pc-mtext">Produts</span>
-                        </a>
-                    </li>
-
-                    <li class="pc-item pc-caption">
-                        <label>Transaction</label>
-                        <i class="ti ti-news"></i>
-                    </li>
-                    <li class="pc-item">
-                        <a href="{{route('transactionView')}}"class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-lock"></i></span>
-                            <span class="pc-mtext">Transaction</span>
-                        </a>
-                    </li>
-
-
-                    <li class="pc-item pc-caption">
-                        <label>Pages</label>
-                        <i class="ti ti-brand-chrome"></i>
-                    </li>
-                    <li class="pc-item">
-                        <a href="../pages/register.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
-                            <span class="pc-mtext">LogOut</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="card text-center">
-                    <div class="card-body">
-                        <img src="{{ asset('template/dist') }}/assets/images/img-navbar-card.png" alt="images" class="img-fluid mb-2">
-                        <h5>Exsport Bags</h5>
-                        <p>Express your quirks and keep</p>
-                    </div>
-                </div>
-            </div>
+            <x-sidebaradmin />
         </div>
     </nav>
-    <!-- [ Sidebar Menu ] end --> <!-- [ Header Topbar ] start -->
-    <header class="pc-header">
-        <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
-            <div class="me-auto pc-mob-drp">
-                <ul class="list-unstyled">
-                    <!-- ======= Menu collapse Icon ===== -->
-                    <li class="pc-h-item pc-sidebar-collapse">
-                        <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
-                            <i class="ti ti-menu-2"></i>
-                        </a>
-                    </li>
-                    <li class="pc-h-item pc-sidebar-popup">
-                        <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
-                            <i class="ti ti-menu-2"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown pc-h-item d-inline-flex d-md-none">
-                        <a
-                            class="pc-head-link dropdown-toggle arrow-none m-0"
-                            data-bs-toggle="dropdown"
-                            href="#"
-                            role="button"
-                            aria-haspopup="false"
-                            aria-expanded="false">
-                            <i class="ti ti-search"></i>
-                        </a>
-                        <div class="dropdown-menu pc-h-dropdown drp-search">
-                            <form class="px-3">
-                                <div class="form-group mb-0 d-flex align-items-center">
-                                    <i data-feather="search"></i>
-                                    <input type="search" class="form-control border-0 shadow-none" placeholder="Search here. . .">
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-                    <li class="pc-h-item d-none d-md-inline-flex">
-                        <form class="header-search">
-                            <i data-feather="search" class="icon-search"></i>
-                            <input type="search" class="form-control" placeholder="Search here. . .">
-                        </form>
-                    </li>
-                </ul>
-            </div>
-            <!-- [Mobile Media Block end] -->
-            <div class="ms-auto">
-                <ul class="list-unstyled">
-                    <li class="dropdown pc-h-item">
-                        <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
-                            <div class="dropdown-header d-flex align-items-center justify-content-between">
-                                <h5 class="m-0">Message</h5>
-                                <a href="#!" class="pc-head-link bg-transparent"><i class="ti ti-x text-danger"></i></a>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative" style="max-height: calc(100vh - 215px)">
-                                <div class="list-group list-group-flush w-100">
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('template/dist') }}/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
-                                            </div>
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">3:00 AM</span>
-                                                <p class="text-body mb-1">It's <b>Cristina danny's</b> birthday today.</p>
-                                                <span class="text-muted">2 min ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('template/dist') }}/assets/images/user/avatar-1.jpg" alt="user-image" class="user-avtar">
-                                            </div>
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">6:00 PM</span>
-                                                <p class="text-body mb-1"><b>Aida Burg</b> commented your post.</p>
-                                                <span class="text-muted">5 August</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('template/dist') }}/assets/images/user/avatar-3.jpg" alt="user-image" class="user-avtar">
-                                            </div>
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">2:45 PM</span>
-                                                <p class="text-body mb-1"><b>There was a failure to your setup.</b></p>
-                                                <span class="text-muted">7 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('template/dist') }}/assets/images/user/avatar-4.jpg" alt="user-image" class="user-avtar">
-                                            </div>
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">9:10 PM</span>
-                                                <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b> Meeting.</b></p>
-                                                <span class="text-muted">Daily scrum meeting time</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="text-center py-2">
-                                <a href="#!" class="link-primary">View all</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown pc-h-item header-user-profile">
-                        <a
-                            class="pc-head-link dropdown-toggle arrow-none me-0"
-                            data-bs-toggle="dropdown"
-                            href="#"
-                            role="button"
-                            aria-haspopup="false"
-                            data-bs-auto-close="outside"
-                            aria-expanded="false">
-                            <img src="{{ asset('template/dist') }}/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
-                            <span>AzzahKousei</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
-                            <div class="dropdown-header">
-                                <div class="d-flex mb-1">
-                                    <div class="flex-shrink-0">
-                                        <img src="{{ asset('template/dist') }}/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar wid-35">
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h6 class="mb-1">Stebin Ben</h6>
-                                        <span>UI/UX Designer</span>
-                                    </div>
-                                    <a href="#!" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>
-                                </div>
-                            </div>
-                            <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button
-                                        class="nav-link active"
-                                        id="drp-t1"
-                                        data-bs-toggle="tab"
-                                        data-bs-target="#drp-tab-1"
-                                        type="button"
-                                        role="tab"
-                                        aria-controls="drp-tab-1"
-                                        aria-selected="true"><i class="ti ti-user"></i> Profile</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button
-                                        class="nav-link"
-                                        id="drp-t2"
-                                        data-bs-toggle="tab"
-                                        data-bs-target="#drp-tab-2"
-                                        type="button"
-                                        role="tab"
-                                        aria-controls="drp-tab-2"
-                                        aria-selected="false"><i class="ti ti-settings"></i> Setting</button>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="mysrpTabContent">
-                                <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-edit-circle"></i>
-                                        <span>Edit Profile</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-user"></i>
-                                        <span>View Profile</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-clipboard-list"></i>
-                                        <span>Social Profile</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-wallet"></i>
-                                        <span>Billing</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-power"></i>
-                                        <span>Logout</span>
-                                    </a>
-                                </div>
-                                <div class="tab-pane fade" id="drp-tab-2" role="tabpanel" aria-labelledby="drp-t2" tabindex="0">
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-help"></i>
-                                        <span>Support</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-user"></i>
-                                        <span>Account Settings</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-lock"></i>
-                                        <span>Privacy Center</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-messages"></i>
-                                        <span>Feedback</span>
-                                    </a>
-                                    <a href="#!" class="dropdown-item">
-                                        <i class="ti ti-list"></i>
-                                        <span>History</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
-    <!-- [ Header ] end -->
 
-
-
-    <!-- [ Main Content ] start -->
+    <!-- Main Content -->
     <div class="pc-container">
         <div class="pc-content">
-            <!-- [ breadcrumb ] start -->
+            <!-- Breadcrumb -->
             <div class="page-header">
                 <div class="page-block">
                     <div class="row align-items-center">
@@ -334,52 +56,69 @@
                                 <h5 class="m-b-10">Transaction</h5>
                             </div>
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="adminView">Admin</a></li>
-                                <li class="breadcrumb-item"><a href="Ttransactionview">Transaction</a></li>
-                                
+                                <li class="breadcrumb-item"><a href="{{ url('adminView') }}">Admin Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('transactionsView') }}">Transaction</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            
 
-    <!-- [Page Specific JS] start -->
-    <script src="{{ asset('template/dist') }}/assets/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('template/dist') }}/assets/js/pages/dashboard-default.js"></script>
-    <!-- [Page Specific JS] end -->
-    <!-- Required Js -->
-    <script src="{{ asset('template/dist') }}/assets/js/plugins/popper.min.js"></script>
-    <script src="{{ asset('template/dist') }}/assets/js/plugins/simplebar.min.js"></script>
-    <script src="{{ asset('template/dist') }}/assets/js/plugins/bootstrap.min.js"></script>
-    <script src="{{ asset('template/dist') }}/assets/js/fonts/custom-font.js"></script>
-    <script src="{{ asset('template/dist') }}/assets/js/pcoded.js"></script>
-    <script src="{{ asset('template/dist') }}/assets/js/plugins/feather.min.js"></script>
+            <!-- Transaction Table -->
+            <section id="transaction" class="bg-light py-5">
+                <div class="container text-center">
+                    <h2 class="mb-4">Tabel Transaksi</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Order Cost</th>
+                                    <th>Order Status</th>
+                                    <th>User ID</th>
+                                    <th>User Phone</th>
+                                    <th>User City</th>
+                                    <th>User Address</th>
+                                    <th>Order Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($transactions as $transaction)
+                                    <tr>
+                                        <td>{{ $transaction->order_id }}</td>
+                                        <td>Rp {{ number_format($transaction->order_cost, 0, ',', '.') }}</td>
+                                        <td>{{ ucfirst($transaction->order_status) }}</td>
+                                        <td>{{ $transaction->user_id }}</td>
+                                        <td>{{ $transaction->user_phone }}</td>
+                                        <td>{{ $transaction->user_city }}</td>
+                                        <td>{{ $transaction->user_address }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($transaction->order_date)->format('d M Y') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 
-
-
-
+    <!-- Scripts -->
+    <script src="{{ asset('template/dist/assets/js/plugins/popper.min.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/js/plugins/simplebar.min.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/js/plugins/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/js/fonts/custom-font.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/js/pcoded.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/js/plugins/feather.min.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/js/plugins/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('template/dist/assets/js/pages/dashboard-default.js') }}"></script>
 
     <script>
         layout_change('light');
-    </script>
-
-    <script>
         change_box_container('false');
-    </script>
-
-    <script>
         layout_rtl_change('false');
-    </script>
-
-    <script>
         preset_change("preset-1");
-    </script>
-    <script>
         font_change("Public-Sans");
     </script>
-
 </body>
-<!-- [Body] end -->
-
 </html>

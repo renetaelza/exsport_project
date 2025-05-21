@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Transaction;
 
 class TransactionsController extends Controller
 {
     public function showTransactionsDashboard() {
-        return view('transaction');
+        $transactions = Transaction::all();
+        return view('transaction', ['transactions' => $transactions]);
     }
 }
