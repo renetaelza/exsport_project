@@ -78,7 +78,7 @@
                         <i class="ti ti-news"></i>
                     </li>
                     <li class="pc-item">
-                        <a href="../pages/login.html" class="pc-link">
+                        <a href="{{route('transactionView')}}"class="pc-link">
                             <span class="pc-micon"><i class="ti ti-lock"></i></span>
                             <span class="pc-mtext">Transaction</span>
                         </a>
