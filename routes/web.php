@@ -10,7 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShopController;
-
+use App\Http\Controllers\TransactionsController;
 
 //LANDING PAGE
 Route::get('/', function () {
@@ -42,3 +42,4 @@ Route::prefix('admin')->group(function () {
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
 Route::get('/adminView', [AdminController::class, 'showAdminDashboard'])->name('adminView');
 Route::get('/productsView', [ProductsController::class, 'showProductsDashboard'])->name('productsView');
+Route::get('/transactionsView', [TransactionsController::class, 'showTransactionsDashboard'])->name('transactionView');
