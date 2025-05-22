@@ -7,7 +7,7 @@
                     <a class="nav-link" href="{{ route('shopView') }}">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../shop.php">Find Us</a>
+                    <a class="nav-link" href="{{ route('detailView') }}">Find Us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../contact.php">About Us</a>

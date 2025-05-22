@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DetailController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
@@ -33,11 +34,15 @@ Route::get('/cartView', [CartController::class, 'showCart'])->name('cartView');
 
 Route::get('/shop', [ShopController::class, 'shopView'])->name('shopView');
 
+// dummy route
+Route::get('/detailView', [DetailController::class, 'showDetail'])->name('detailView');
+
 // Group untuk admin
 Route::prefix('admin')->group(function () {
     // Hanya bisa diakses oleh admin
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->middleware('admin')->name('admin.dashboard');
 });
+
 // Redirect ke halaman login jika user tidak terautentikasi
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
 Route::get('/adminView', [AdminController::class, 'showAdminDashboard'])->name('adminView');

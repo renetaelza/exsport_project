@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
 </head>
 <!-- euy jir -->
-<body>
+
+<body style="padding-top: 80px;">
     <x-navbar2 />
     <div class="max-w-[1200px] mx-auto flex flex-col lg:flex-row px-4 py-6 gap-6">
         <!-- Left side thumbnails -->
@@ -45,82 +45,88 @@
                 <img alt="Green color Dutch oven top view" class="w-10 h-10 object-contain" height="40" src="https://storage.googleapis.com/a1aa/image/9cd80e64-417d-4bb6-a02b-1aacf51db9ab.jpg" width="40" />
             </button>
         </div>
-        <!-- Main image and arrows with product info side by side -->
-        <div class="flex-1 flex flex-col lg:flex-row items-start gap-6">
-            <div class="relative flex-1 flex items-center justify-center max-w-[600px]">
-                <button aria-label="Previous image" class="absolute left-4 top-1/2 -translate-y-1/2 border border-[#1a3a2f] rounded-full w-8 h-8 flex items-center justify-center text-[#1a3a2f] z-10">
-                    <i class="fas fa-arrow-left">
-                    </i>
-                </button>
-                <img alt="Broccoli color Dutch oven with lid on, side view" class="max-w-full max-h-[400px] object-contain" height="400" src="{{ asset('storage/holiday_bag (1).jpg') }}" width="600" />
-                <button aria-label="Next image" class="absolute right-4 top-1/2 -translate-y-1/2 border border-[#1a3a2f] rounded-full w-8 h-8 flex items-center justify-center text-[#1a3a2f] z-10">
-                    <i class="fas fa-arrow-right">
-                    </i>
-                </button>
-            </div>
-            <!-- Product details -->
-            <div class="flex-1 max-w-lg">
-                <div class="mb-2">
-                    <p class="inline-block bg-[#1a3a2f] text-white text-xs font-semibold px-2 py-0.5 rounded">
-                        Bags
-                    </p>
+
+        <!-- Main image and arrows with product info slidder -->
+        <div class="container product-scroll-wrapper">
+            <div class="product-content">
+                <div class="img">
+                    <img alt="Broccoli color Dutch oven with lid on, side view" src="{{ asset('storage/holiday_bag (1).jpg') }}" />
+                    <img alt="Broccoli color Dutch oven with lid on, side view" src="{{ asset('storage/holiday_bag (1).jpg') }}" />
+                    <img alt="Broccoli color Dutch oven with lid on, side view" src="{{ asset('storage/holiday_bag (1).jpg') }}" />
+                    <img alt="Broccoli color Dutch oven with lid on, side view" src="{{ asset('storage/holiday_bag (1).jpg') }}" />
+                    <img alt="Broccoli color Dutch oven with lid on, side view" src="{{ asset('storage/holiday_bag (1).jpg') }}" />
                 </div>
-                <h1 class="text-3xl font-bold mb-1">
-                    The Dutchess
-                </h1>
-                <div class="flex justify-between mb-4">
-                    <span class="font-bold text-lg">
-                        $205
-                    </span>
-                </div>
-                <p class="text-sm font-semibold mb-2">
-                    A good Dutch oven lasts forever; a Great Jones Dutch oven is your best
-                    friend forever. Our 6.75-quart enameled cast-iron Dutchess moves
-                    gracefully from stove to oven to table centerpiece.
-                </p>
-                <p class="text-sm font-bold mb-1">
-                    Why It's Special
-                </p>
-                <ul class="text-xs text-gray-500 list-disc list-inside mb-4 space-y-1">
-                    <li>
-                        Safe for all stovetops (including induction).
-                    </li>
-                    <li>
-                        Choose between six matte colors to match your style.
-                    </li>
-                    <li>
-                        Our signature oval shape perfectly fits a chicken.
-                    </li>
-                </ul>
-                <div class="mb-4 flex items-center gap-2 text-sm">
-                    <span class="font-semibold text-[#1a3a2f]">
-                        Color:
-                    </span>
-                    <span>
-                        Broccoli
-                    </span>
-                    <div class="flex gap-2 ml-auto">
-                        <button aria-label="Select Broccoli color" class="w-6 h-6 rounded-full border border-[#1a3a2f] bg-[#3a5a40]">
-                        </button>
-                        <button aria-label="Select pink color" class="w-6 h-6 rounded-full bg-[#dba3a3]">
-                        </button>
-                        <button aria-label="Select blue color" class="w-6 h-6 rounded-full bg-[#2a3a7a]">
-                        </button>
-                        <button aria-label="Select orange color" class="w-6 h-6 rounded-full bg-[#dba33a]">
-                        </button>
-                        <button aria-label="Select black color" class="w-6 h-6 rounded-full bg-black">
-                        </button>
-                        <button aria-label="Select white color" class="w-6 h-6 rounded-full bg-white border border-gray-300">
-                        </button>
+
+                <!-- Product details -->
+                <div class="product-details">
+                    <h1 class="">
+                        The Dutchess
+                    </h1>
+                    <div class="">
+                        <span class="font-bold text-lg">
+                            $205
+                        </span>
                     </div>
+                    <p class="">
+                        Color: Emerald Green
+                    </p> <br>
+                    <p>Dimension: 13 x 8 cm</p><br>
+                    <p>Material: Nylon</p><br>
+                    <p>Available color: Black, Red, Light Pink, Emerald Green, Blueberry, Dark Olive</p><br>
+                    <p>
+                        Special Features:</p><br>
+                    <p>1. Main compartment (with zipper)</p><br>
+                    <p>2. Equipped with 5 card holders (one on the front and four on the back)</p><br>
+                    <p>3. Equipped with one card holder with mica cover on the front</p><br>
+                    <p> 4. Equipped with a carabiner to hang lanyard</p><br>
+                    <p>5. Equipped with 43 cm neck strap</p><br>
+                    <p>Quality & Warranty: Made from high quality nylon and water-repellent material with lifetime warranty.</p><br>
+                    <p>Let us befriend your hustler journey! ⏲💻</p><br>
+                    <p>Go get this collection at the link in our bio or at our nearest flagship store! 🛒</p><br>
+                    <p class="">
+                        Why It's Special
+                    </p>
+                    <ul class="text-xs text-gray-500 list-disc list-inside mb-4 space-y-1">
+                        <li>
+                            Safe for all stovetops (including induction).
+                        </li>
+                        <li>
+                            Choose between six matte colors to match your style.
+                        </li>
+                        <li>
+                            Our signature oval shape perfectly fits a chicken.
+                        </li>
+                    </ul>
+                    <div class="mb-4 flex items-center gap-2 text-sm">
+                        <span class="font-semibold text-[#1a3a2f]">
+                            Color:
+                        </span>
+                        <span>
+                            Broccoli
+                        </span>
+                        <div class="product-vars">
+                            <button aria-label="Select Broccoli color" class="w-6 h-6 rounded-full border border-[#1a3a2f] bg-[#3a5a40]">
+                            </button>
+                            <button aria-label="Select pink color" class="w-6 h-6 rounded-full bg-[#dba3a3]">
+                            </button>
+                            <button aria-label="Select blue color" class="w-6 h-6 rounded-full bg-[#2a3a7a]">
+                            </button>
+                            <button aria-label="Select orange color" class="w-6 h-6 rounded-full bg-[#dba33a]">
+                            </button>
+                            <button aria-label="Select black color" class="w-6 h-6 rounded-full bg-black">
+                            </button>
+                            <button aria-label="Select white color" class="w-6 h-6 rounded-full bg-white border border-gray-300">
+                            </button>
+                        </div>
+                    </div>
+
+                    <button method="POST" class="w-full bg-[#1a3a2f] text-white font-semibold py-3 rounded hover:bg-[#163225] transition">
+                        Add to Cart | $205
+                    </button>
                 </div>
-
-                <button class="w-full bg-[#1a3a2f] text-white font-semibold py-3 rounded hover:bg-[#163225] transition">
-                    Add to Cart | $205
-                </button>
-
             </div>
         </div>
+
     </div>
 
     <div class="product-section">
@@ -214,5 +220,42 @@
     <x-footer />
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const wrapper = document.querySelector('.product-scroll-wrapper');
+        const details = wrapper.querySelector('.product-details');
+        const image = wrapper.querySelector('.img');
+
+        const detailScrollDone = () => {
+            return details.scrollTop + details.clientHeight >= details.scrollHeight;
+        }
+
+        const imageScrollDone = () => {
+            return image.scrollTop + image.clientHeight >= image.scrollHeight;
+        }
+
+        let phase = 1; // 1: scroll detail, 2: scroll image, 3: scroll normal
+
+        wrapper.addEventListener('wheel', (e) => {
+            if (phase === 1) {
+                details.scrollTop += e.deltaY;
+                if (detailScrollDone()) {
+                    phase = 2;
+                }
+                e.preventDefault();
+            } else if (phase === 2) {
+                image.scrollTop += e.deltaY;
+                if (imageScrollDone()) {
+                    phase = 3;
+                }
+                e.preventDefault();
+            }
+            // phase 3: biarkan browser scroll normal ke konten selanjutnya
+        }, {
+            passive: false
+        });
+    });
+</script>
+
 
 </html>
