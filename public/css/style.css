@@ -93,6 +93,9 @@
     padding: 50px 20px;
     text-align: center;
     overflow-x: auto;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .tabs {
@@ -117,6 +120,9 @@
     gap: 30px;
     justify-content: center;
     overflow-x: auto;
+    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .product-item {
@@ -1730,7 +1736,9 @@ input:focus {
 }
 
 
-/* Detail Product */
+/*---------------------
+  Detail Product
+-----------------------*/
 
 body,
 html {
@@ -1757,8 +1765,14 @@ html {
     overflow-y: auto;
     max-height: 100vh;
     padding: 2rem;
+    border-radius: 0.75rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
     scrollbar-width: none;
     -ms-overflow-style: none;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .img {
@@ -1781,9 +1795,107 @@ html {
     height: 100vh;
     background: #f4f4f4;
     padding: 2rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .product-details::-webkit-scrollbar,
-.img::-webkit-scrollbar {
+.img::-webkit-scrollbar, .product-grid::-webkit-scrollbar {
     display: none;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Judul produk */
+.product-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1a3a2f;
+}
+
+/* Deskripsi umum */
+.product-details p {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Label seperti Harga, Deskripsi, Kategori */
+.product-details p strong {
+    display: inline-block;
+    min-width: 100px;
+    color: #555;
+}
+
+/* Bagian pemilihan warna */
+.product-color-selection {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Label "Color:" */
+.product-color-label {
+    font-weight: 600;
+    color: #1a3a2f;
+}
+
+/* Daftar pilihan warna */
+.product-vars {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+/* Tombol lingkaran warna */
+.product-color-circle {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.product-color-circle:hover {
+    transform: scale(1.1);
+    border-color: #888;
+}
+
+.product-color-circle.white-border {
+    border: 2px solid #d1d5db;
+}
+
+/* Tombol "Add to Cart" */
+.product-add-to-cart-btn {
+    width: 100%;
+    background-color: #1a3a2f;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.875rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.product-add-to-cart-btn:hover {
+    background-color: #163225;
+    transform: translateY(-2px);
+}
+
+.product-add-to-cart-btn p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.95rem;
 }
