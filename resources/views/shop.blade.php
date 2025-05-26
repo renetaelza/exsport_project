@@ -84,9 +84,9 @@
 
                 @endphp
 
-                <div class="product-image">
+                <a class="product-image" href="{{ route('detailView', ['id' => $product->id]) }}">
                     <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image">
-                </div>
+                </a>
                 <h3 class="product-title">{{ $product->name }}</h3>
                 <div class="product-price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
                 <div class="color-options">

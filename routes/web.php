@@ -6,11 +6,12 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DetailController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\ProductsController;
 
 //LANDING PAGE
 Route::get('/', function () {
@@ -28,16 +29,24 @@ Route::post('/registerUser', [RegisterController::class, 'create'])->name('user.
 Route::get('/account', [LoginController::class, 'showAccount'])->middleware('notAdmin')->name('account');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// SHOP CART
+// SHOP & CART
 Route::get('/cartView', [CartController::class, 'showCart'])->name('cartView');
-
 Route::get('/shop', [ShopController::class, 'shopView'])->name('shopView');
+// ADD TO CART
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+// DETAIL PRODUCT
+Route::get('/detail/{id}', [DetailController::class, 'showDetail'])->name('detailView');
 
 // Group untuk admin
 Route::prefix('admin')->group(function () {
     // Hanya bisa diakses oleh admin
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->middleware('admin')->name('admin.dashboard');
 });
+
 // Redirect ke halaman login jika user tidak terautentikasi
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
 Route::get('/adminView', [AdminController::class, 'showAdminDashboard'])->name('adminView');

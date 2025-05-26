@@ -52,7 +52,7 @@
 
     <div class="product-section">
         <div class="tabs">
-            <span class="tab active">Most Popular</span>
+            <span class="tab active link">Most Popular</span>
             <span class="tab">New Arrival</span>
             <span class="tab">Backpack</span>
             <span class="tab">Pouch</span>

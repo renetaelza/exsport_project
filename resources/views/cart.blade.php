@@ -18,6 +18,7 @@
     <title>Shopping Cart</title>
 </head>
 <!-- euy ir -->
+
 <body class="min-h-screen flex flex-col items-center justify-center bg-gray-50" style="padding-top: 50px;">
     <x-navbar2 />
     <!-- Breadcrumb Section Begin -->
@@ -60,47 +61,50 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (isset($_SESSION['cart'])) { ?>
-                                    <?php foreach ($_SESSION['cart'] as $key => $value) { ?>
-                                        <div>
-                                            <tr>
-                                                <td class="product__cart__item">
-                                                    <div class="product__cart__item__pic">
-                                                        <img src="img/product/" alt="">
-                                                    </div>
-                                                    <div class="product__cart__item__text">
-                                                        <h6>Nama Produk</h6>
-                                                        <h5>Harga Produk</h5>
-                                                    </div>
-                                                </td>
-                                                <td class="quantity__item">
-                                                    <div class="quantity" style="margin-left: 20px; display: flex; align-items: center;">
-                                                        <form method="POST" action="shopping-cart.php" style="display: flex;">
-                                                            <div>
-                                                                <input type="hidden" name="product_id" value="">
-                                                                <input style="margin-top: 13px; margin-right: 15px;" type="number" name="product_quantity" value="" min="1" style="margin-right: 5px;">
-                                                            </div>
-                                                            <div>
-                                                                <button class="editbtn" type="submit" name="edit_quantity"><i class="fa fa-refresh"></i></button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__price">
-                                                    <span id="product_price_>">harga produk</span>
-                                                </td>
-                                                <form method="POST" action="shopping-cart.php">
-                                                    <td>
-                                                        <input type="hidden" name="product_id" value="">
-                                                        <button type="submit" class="btn btn-danger" name="remove_product"><i class="fa fa-trash"></i></button>
-                                                    </td>
-                                                </form>
-                                            </tr>
-                                            </tr>
+                                @php $total = 0; @endphp
+
+                                @if (count($cart) > 0)
+                                    @foreach ($products as $product)
+                                        @php
+                                            $quantity = $cart[$product->id];
+                                            $subtotal = $product->price * $quantity;
+                                            $total += $subtotal;
+                                        @endphp
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img src="{{ asset('img/product/' . $product->image) }}" alt="" width="70">
                                         </div>
-                                    <?php } ?>
-                                <?php } ?>
+                                        <div class="product__cart__item__text">
+                                            <h6>{{ $product->name }}</h6>
+                                            <h5>Rp {{ number_format($product->price, 0, ',', '.') }}</h5>
+                                        </div>
+                                    </td>
+                                    <td class="quantity__item">
+                                        <form method="POST" action="{{ route('cart.update', $product->id) }}" style="display: flex; align-items: center;">
+                                            @csrf
+                                            <input type="number" id="product_quantity_{{ $product->id }}" name="quantity" value="{{ $quantity }}" min="1" style="width: 70px;" onchange="calculatePrice('{{ $product->id }}', '{{ $product->price }}')">
+                                            <button class="editbtn" type="submit"><i class="fa fa-refresh"></i></button>
+                                        </form>
+                                    </td>
+                                    <td class="cart__price">
+                                        <span id="product_price_{{ $product->id }}">Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="{{ route('cart.remove', $product->id) }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td colspan="4">Keranjang masih kosong.</td>
+                                </tr>
+                                @endif
                             </tbody>
+
                         </table>
 
                         <!-- Optional Notes -->
@@ -136,13 +140,15 @@
                         </div>
                         <div class="flex justify-between font-semibold text-xs mb-6">
                             <span>Total Pembayaran</span>
-                            <span>0</span>
+                            <span id="total_payment"><?php echo isset($total) ? $total + 20000 : '0'; ?></span>
                         </div>
-                        <button
-                            type="button"
-                            class="w-full bg-[#3DBBC6] text-white text-xs rounded px-8 py-3 hover:bg-[#33a9af] transition">
-                            Checkout
-                        </button>
+                        <form method="POST" id="checkout_form" action="checkout.php">
+                            <input type="hidden" name="notes_hidden" id="notes_hidden">
+                            <button type="submit" class="w-full bg-[#3DBBC6] text-white text-xs rounded px-8 py-3 hover:bg-[#33a9af] transition">
+                                Checkout
+                            </button>
+                        </form>
+
                     </aside>
                 </div>
             </div>
@@ -153,6 +159,29 @@
 
 
 <script>
+    function calculatePrice(productId, price) {
+        var quantity = document.getElementById('product_quantity_' + productId).value;
+        var subtotal = quantity * price;
+        document.getElementById('product_price_' + productId).innerText = subtotal;
+        updateTotalPayment();
+    }
+
+    function updateTotalPayment() {
+        var total_payment = 0;
+        var prices = document.querySelectorAll('[id^="product_price_"]');
+        prices.forEach(function(element) {
+            total_payment += parseInt(element.innerText);
+        });
+        total_payment += 20000; // Ongkir
+        document.getElementById('total_payment').innerText = total_payment;
+    }
+
+    document.getElementById('checkout_form').addEventListener('submit', function(e) {
+        const notes = document.getElementById('notes').value;
+        document.getElementById('notes_hidden').value = notes;
+    });
+
+    /*
     const checkoutForm = document.getElementById('checkout_form');
     const notesInput = document.getElementById('notes');
 
@@ -188,7 +217,7 @@
         });
         total_payment += 20000; // Add shipping cost
         document.getElementById('total_payment').innerText = total_payment;
-    }
+    }*/
 </script>
 
 </html>
