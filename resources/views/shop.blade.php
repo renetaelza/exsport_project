@@ -69,6 +69,21 @@
                         $imagePath = '/products/' . $mainImageBase . '.png';
                     } elseif (file_exists(public_path('products/' . $mainImageBase . '.jpg'))) {
                         $imagePath = '/products/' . $mainImageBase . '.jpg';
+                <a class="product-image" href="{{ route('detailView', ['id' => $product->id]) }}">
+                    <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image">
+                </a>
+                <h3 class="product-title">{{ $product->name }}</h3>
+                <div class="product-price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
+                <div class="color-options">
+                    @foreach($colors as $color)
+                    @php
+                    $colorLower = strtolower($color);
+                    $colorImageBase = $productNameForFile . '_' . $colorLower;
+
+                    if (file_exists(public_path('products/' . $colorImageBase . '.png'))) {
+                    $colorImage = '/products/' . $colorImageBase . '.png';
+                    } elseif (file_exists(public_path('products/' . $colorImageBase . '.jpg'))) {
+                    $colorImage = '/products/' . $colorImageBase . '.jpg';
                     } else {
                         $imagePath = '/products/default.png';
                     }

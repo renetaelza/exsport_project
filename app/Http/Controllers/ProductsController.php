@@ -56,4 +56,5 @@ class ProductsController extends Controller
 
         return redirect(route('products.view'))->with('success', 'Produk berhasil ditambahkan!');
     }
+    
 }

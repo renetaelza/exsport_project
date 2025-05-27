@@ -1,20 +1,21 @@
-*{
+* {
     font-family: 'Poppins', sans-serif;
 }
 
-.navbar{
+.navbar {
     padding: 25px;
 }
+
 .navbar-brand img {
     width: 130px;
 }
 
-.nav-item{
+.nav-item {
     font-weight: 800;
     font-size: 18px;
 }
 
-.navbar-nav{
+.navbar-nav {
     gap: 20px;
 }
 
@@ -54,7 +55,7 @@
 
 .carousel-item img {
     height: 700px;
-    object-fit:fill;
+    object-fit: fill;
 }
 
 .marquee-container {
@@ -92,6 +93,9 @@
     padding: 50px 20px;
     text-align: center;
     overflow-x: auto;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .tabs {
@@ -116,6 +120,9 @@
     gap: 30px;
     justify-content: center;
     overflow-x: auto;
+    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .product-item {
@@ -245,9 +252,10 @@
     margin-top: 40px;
 }
 
-.why-container{
+.why-container {
     background-color: #f5f5f5;
 }
+
 .why-us-section {
     display: flex;
     justify-content: space-around;
@@ -516,7 +524,8 @@
     gap: 15px;
 }
 
-input, textarea{
+input,
+textarea {
     padding: 15px;
     border: none;
     border-radius: 10px;
@@ -635,23 +644,24 @@ textarea:focus {
     color: #666;
 }
 
-*{
+* {
     font-family: 'Poppins', sans-serif;
 }
 
-.navbar{
+.navbar {
     padding: 25px;
 }
+
 .navbar-brand img {
     width: 130px;
 }
 
-.nav-item{
+.nav-item {
     font-weight: 800;
     font-size: 18px;
 }
 
-.navbar-nav{
+.navbar-nav {
     gap: 20px;
 }
 
@@ -691,7 +701,7 @@ textarea:focus {
 
 .carousel-item img {
     height: 700px;
-    object-fit:fill;
+    object-fit: fill;
 }
 
 .marquee-container {
@@ -852,9 +862,10 @@ textarea:focus {
     margin-top: 40px;
 }
 
-.why-container{
+.why-container {
     background-color: #f5f5f5;
 }
+
 .why-us-section {
     display: flex;
     justify-content: space-around;
@@ -1283,35 +1294,35 @@ input:focus {
 }
 
 .breadcrumb-option {
-	padding: 40px;
+    padding: 40px;
 }
 
 .breadcrumb__text h4 {
-	color: #111111;
-	font-weight: 700;
-	margin-bottom: 8px;
+    color: #111111;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .breadcrumb__links a {
-	font-size: 15px;
-	color: #111111;
-	margin-right: 7px;
-	display: inline-block;
-	position: relative;
+    font-size: 15px;
+    color: #111111;
+    margin-right: 7px;
+    display: inline-block;
+    position: relative;
 }
 
 .breadcrumb__links a:after {
-	position: absolute;
-	right: -14px;
-	top: 0;
-	font-family: "FontAwesome";
+    position: absolute;
+    right: -14px;
+    top: 0;
+    font-family: "FontAwesome";
 }
 
 .breadcrumb__links span {
-	font-size: 15px;
-	font-weight: 500px;
-	color: #37a5a2;
-	display: inline-block;
+    font-size: 15px;
+    font-weight: 500px;
+    color: #37a5a2;
+    display: inline-block;
 }
 
 /*---------------------
@@ -1319,23 +1330,23 @@ input:focus {
 -----------------------*/
 
 .breadcrumb-blog {
-	text-align: center;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	height: 350px;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 350px;
 }
 
 .breadcrumb-blog h2 {
-	color: #ffffff;
-	font-size: 60px;
-	font-weight: 700;
+    color: #ffffff;
+    font-size: 60px;
+    font-weight: 700;
 }
 
 /*---------------------
@@ -1349,61 +1360,61 @@ input:focus {
 }
 
 .counter .container {
-	border-bottom: 1px solid #e5e5e5;
-	padding-bottom: 70px;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 70px;
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
-	.container {
-		max-width: 1170px;
-	}
+    .container {
+        max-width: 1170px;
+    }
 }
 
-	.header .container {
-		position: relative;
-	}
+.header .container {
+    position: relative;
+}
 
-    /*---------------------
+/*---------------------
   Breadcrumb
 -----------------------*/
 
 .breadcrumb-option {
-	padding: 40px;
+    padding: 40px;
 }
 
 .breadcrumb__text h4 {
-	color: #111111;
-	font-weight: 700;
-	margin-bottom: 8px;
+    color: #111111;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .breadcrumb__links a {
-	font-size: 15px;
-	color: #111111;
-	margin-right: 7px;
-	display: inline-block;
-	position: relative;
+    font-size: 15px;
+    color: #111111;
+    margin-right: 7px;
+    display: inline-block;
+    position: relative;
 }
 
 .breadcrumb__links a:after {
-	position: absolute;
-	right: -14px;
-	top: 0;
-	font-family: "FontAwesome";
+    position: absolute;
+    right: -14px;
+    top: 0;
+    font-family: "FontAwesome";
 }
 
 .breadcrumb__links span {
-	font-size: 15px;
-	font-weight: 500px;
-	color: #37a5a2;
-	display: inline-block;
+    font-size: 15px;
+    font-weight: 500px;
+    color: #37a5a2;
+    display: inline-block;
 }
 
 .spad {
-	padding-top: 100px;
-	padding-bottom: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 /*---------------------
@@ -1411,122 +1422,122 @@ input:focus {
 -----------------------*/
 
 .shopping__cart__table {
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .shopping__cart__table table {
-	width: 100%;
-	margin: 10px;
+    width: 100%;
+    margin: 10px;
 }
 
 .shopping__cart__table table thead {
-	border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
 }
 
 .shopping__cart__table table thead tr th {
-	color: #111111;
-	font-size: 16px;
-	font-weight: 700;
-	text-transform: uppercase;
-	padding-bottom: 25px;
+    color: #111111;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 25px;
 }
 
 .shopping__cart__table table tbody tr td {
-	padding-bottom: 30px;
-	padding-top: 30px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item {
-	width: 400px;
+    width: 400px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__pic {
-	float: left;
-	margin-right: 30px;
-	height: 100px;
-	width: 100px;
+    float: left;
+    margin-right: 30px;
+    height: 100px;
+    width: 100px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__text {
-	overflow: hidden;
-	padding-top: 21px;
+    overflow: hidden;
+    padding-top: 21px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__text h6 {
-	color: #111111;
-	font-size: 15px;
-	font-weight: 600;
-	margin-bottom: 10px;
+    color: #111111;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__text h5 {
-	color: #0d0d0d;
-	font-weight: 700;
+    color: #0d0d0d;
+    font-weight: 700;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item {
-	width: 175px;
+    width: 175px;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-2 {
-	width: 80px;
+    width: 80px;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity .editbtn {
-	margin-top: 10px;
-	border-radius: 10px;
-	background-color: #37a5a2;
-	padding: 7px;
-	border: none;
-	color: white;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #37a5a2;
+    padding: 7px;
+    border: none;
+    color: white;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity input {
-	width: 70px;
-	text-align: center;
-	margin: auto;
-	padding: auto;
+    width: 70px;
+    text-align: center;
+    margin: auto;
+    padding: auto;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-2 input {
-	width: 50px;
-	border: none;
-	text-align: center;
-	color: #111111;
-	font-size: 16px;
-	padding: auto;
+    width: 50px;
+    border: none;
+    text-align: center;
+    color: #111111;
+    font-size: 16px;
+    padding: auto;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-2 .qtybtn {
-	font-size: 16px;
-	color: #888888;
-	width: 10px;
-	cursor: pointer;
+    font-size: 16px;
+    color: #888888;
+    width: 10px;
+    cursor: pointer;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .edit_qty {
-	background-color: wheat;
-	border: none;
-	color: coral;
-	position: relative;
+    background-color: wheat;
+    border: none;
+    color: coral;
+    position: relative;
 }
 
 .shopping__cart__table table tbody tr td.cart__price {
-	color: #111111;
-	font-size: 18px;
-	font-weight: 700;
-	width: 140px;
+    color: #111111;
+    font-size: 18px;
+    font-weight: 700;
+    width: 140px;
 }
 
 .shopping__cart__table table tbody tr td.cart__close i {
-	font-size: 18px;
-	color: #111111;
-	height: 40px;
-	width: 40px;
-	background: #f3f2ee;
-	border-radius: 50%;
-	line-height: 40px;
-	text-align: center;
+    font-size: 18px;
+    color: #111111;
+    height: 40px;
+    width: 40px;
+    background: #f3f2ee;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
 }
 
 
@@ -1535,190 +1546,356 @@ input:focus {
 -----------------------*/
 
 .shopping__cart__table {
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .shopping__cart__table table {
-	width: 100%;
-	margin: 10px;
+    width: 100%;
+    margin: 10px;
 }
 
 .shopping__cart__table table thead {
-	border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
 }
 
 .shopping__cart__table table thead tr th {
-	color: #111111;
-	font-size: 16px;
-	font-weight: 700;
-	text-transform: uppercase;
-	padding-bottom: 25px;
+    color: #111111;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 25px;
 }
 
 .shopping__cart__table table tbody tr td {
-	padding-bottom: 30px;
-	padding-top: 30px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item {
-	width: 400px;
+    width: 400px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__pic {
-	float: left;
-	margin-right: 30px;
-	height: 100px;
-	width: 100px;
+    float: left;
+    margin-right: 30px;
+    height: 100px;
+    width: 100px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__text {
-	overflow: hidden;
-	padding-top: 21px;
+    overflow: hidden;
+    padding-top: 21px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__text h6 {
-	color: #111111;
-	font-size: 15px;
-	font-weight: 600;
-	margin-bottom: 10px;
+    color: #111111;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__text h5 {
-	color: #0d0d0d;
-	font-weight: 700;
+    color: #0d0d0d;
+    font-weight: 700;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item {
-	width: 175px;
+    width: 175px;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-2 {
-	width: 80px;
+    width: 80px;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity .editbtn {
-	margin-top: 10px;
-	border-radius: 10px;
-	background-color: #37a5a2;
-	padding: 7px;
-	border: none;
-	color: white;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #37a5a2;
+    padding: 7px;
+    border: none;
+    color: white;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity input {
-	width: 70px;
-	text-align: center;
-	margin: auto;
-	padding: auto;
+    width: 70px;
+    text-align: center;
+    margin: auto;
+    padding: auto;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-2 input {
-	width: 50px;
-	border: none;
-	text-align: center;
-	color: #111111;
-	font-size: 16px;
-	padding: auto;
+    width: 50px;
+    border: none;
+    text-align: center;
+    color: #111111;
+    font-size: 16px;
+    padding: auto;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty-2 .qtybtn {
-	font-size: 16px;
-	color: #888888;
-	width: 10px;
-	cursor: pointer;
+    font-size: 16px;
+    color: #888888;
+    width: 10px;
+    cursor: pointer;
 }
 
 .shopping__cart__table table tbody tr td.quantity__item .edit_qty {
-	background-color: wheat;
-	border: none;
-	color: coral;
-	position: relative;
+    background-color: wheat;
+    border: none;
+    color: coral;
+    position: relative;
 }
 
 .shopping__cart__table table tbody tr td.cart__price {
-	color: #111111;
-	font-size: 18px;
-	font-weight: 700;
-	width: 140px;
+    color: #111111;
+    font-size: 18px;
+    font-weight: 700;
+    width: 140px;
 }
 
 .shopping__cart__table table tbody tr td.cart__close i {
-	font-size: 18px;
-	color: #111111;
-	height: 40px;
-	width: 40px;
-	background: #f3f2ee;
-	border-radius: 50%;
-	line-height: 40px;
-	text-align: center;
+    font-size: 18px;
+    color: #111111;
+    height: 40px;
+    width: 40px;
+    background: #f3f2ee;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
 }
 
-	.shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__pic {
-		float: none;
-		margin-right: 0;
-	}
+.shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__pic {
+    float: none;
+    margin-right: 0;
+}
 
-    .cart__total {
-	margin-left: 30px;
-	background: #f3f2ee;
-	padding: 45px 50px 50px;
-	border-radius: 20px;
+.cart__total {
+    margin-left: 30px;
+    background: #f3f2ee;
+    padding: 45px 50px 50px;
+    border-radius: 20px;
 }
 
 .cart__total h6 {
-	color: #111111;
-	text-transform: uppercase;
-	margin-bottom: 12px;
+    color: #111111;
+    text-transform: uppercase;
+    margin-bottom: 12px;
 }
 
 .cart__total ul {
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 .cart__total ul li {
-	list-style: none;
-	font-size: 16px;
-	color: #444444;
-	line-height: 40px;
-	overflow: hidden;
+    list-style: none;
+    font-size: 16px;
+    color: #444444;
+    line-height: 40px;
+    overflow: hidden;
 }
 
 .cart__total ul li span {
-	color: #000;
-	float: right;
+    color: #000;
+    float: right;
 }
 
 .cart__total .primary-btn {
-	display: block;
-	width: 100%;
-	padding: 12px 10px;
-	text-align: center;
-	letter-spacing: 2px;
+    display: block;
+    width: 100%;
+    padding: 12px 10px;
+    text-align: center;
+    letter-spacing: 2px;
 }
 
 .continue__btn.update__btn {
-	text-align: right;
+    text-align: right;
 }
 
 .continue__btn.update__btn a i {
-	margin-right: 5px;
+    margin-right: 5px;
 }
 
 .continue__btn button {
-	color: #111111;
-	font-size: 14px;
-	font-weight: 700;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	border: 1px solid #e1e1e1;
-	padding: 14px 35px;
-	display: inline-block;
+    color: #111111;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid #e1e1e1;
+    padding: 14px 35px;
+    display: inline-block;
 }
-	.continue__btn {
-		text-align: center;
-	}
 
-	.continue__btn.update__btn {
-		text-align: center;
-		margin-top: 20px;
-	}
+.continue__btn {
+    text-align: center;
+}
+
+.continue__btn.update__btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/*---------------------
+  Detail Product
+-----------------------*/
+
+body,
+html {
+    height: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.product-scroll-wrapper {
+    height: 200vh;
+    /* cukup tinggi untuk efek scroll 3 fase */
+    position: relative;
+}
+
+.product-content {
+    display: flex;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.product-details {
+    flex: 0 0 40%;
+    overflow-y: auto;
+    max-height: 100vh;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img {
+    flex: 0 0 60%;
+    overflow-y: auto;
+    max-height: 100vh;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.img img {
+    height: 100%;
+    width: 100%;
+    /* gambar lebih panjang untuk efek scroll terpisah */
+    object-fit: cover;
+}
+
+.next-section {
+    height: 100vh;
+    background: #f4f4f4;
+    padding: 2rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.product-details::-webkit-scrollbar,
+.img::-webkit-scrollbar, .product-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Judul produk */
+.product-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1a3a2f;
+}
+
+/* Deskripsi umum */
+.product-details p {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Label seperti Harga, Deskripsi, Kategori */
+.product-details p strong {
+    display: inline-block;
+    min-width: 100px;
+    color: #555;
+}
+
+/* Bagian pemilihan warna */
+.product-color-selection {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Label "Color:" */
+.product-color-label {
+    font-weight: 600;
+    color: #1a3a2f;
+}
+
+/* Daftar pilihan warna */
+.product-vars {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+/* Tombol lingkaran warna */
+.product-color-circle {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.product-color-circle:hover {
+    transform: scale(1.1);
+    border-color: #888;
+}
+
+.product-color-circle.white-border {
+    border: 2px solid #d1d5db;
+}
+
+/* Tombol "Add to Cart" */
+.product-add-to-cart-btn {
+    width: 100%;
+    background-color: #1a3a2f;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.875rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.product-add-to-cart-btn:hover {
+    background-color: #163225;
+    transform: translateY(-2px);
+}
+
+.product-add-to-cart-btn p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
