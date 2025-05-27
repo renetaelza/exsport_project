@@ -50,5 +50,9 @@ Route::prefix('admin')->group(function () {
 // Redirect ke halaman login jika user tidak terautentikasi
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
 Route::get('/adminView', [AdminController::class, 'showAdminDashboard'])->name('adminView');
-Route::get('/productsView', [ProductsController::class, 'showProductsDashboard'])->name('productsView');
+// Route::get('/productsView', [ProductsController::class, 'showProductsDashboard'])->name('productsView');
 Route::get('/transactionsView', [TransactionsController::class, 'showTransactionsDashboard'])->name('transactionView');
+
+Route::get('/productsView', [ProductsController::class, 'view'])->name('products.view');
+Route::get('/admin/create', [ProductsController::class, 'admin'])->name('admin.create');
+Route::post('/productsView', [ProductsController::class, 'create'])->name('products.create');
