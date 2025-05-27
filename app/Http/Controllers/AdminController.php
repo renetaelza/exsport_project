@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function showAdminDashboard() {
-        return view('mantis');
+        return view('admin.dashboard');
     }
 }
