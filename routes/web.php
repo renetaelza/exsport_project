@@ -12,12 +12,17 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\ProductsController;
+use App\Models\Products;
 
 //LANDING PAGE
 Route::get('/', function () {
-    return view('landing');
+    $category = request('category', 'Backpack');
+    $products = Products::where('category', $category)->take(5)->get();
+
+    return view('landing', compact('products', 'category'));
 });
-Route::get('/', [ShopController::class, 'shopView']);
+
+Route::get('/product-detail/{id}', [ShopController::class, 'getProduct']);
 
 // LOGIN REGISTER USER
 Route::get('/loginUser', [LoginController::class, 'showLoginForm'])->middleware('notAdmin')->name('loginUser');

@@ -13,18 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom scrollbar for dropdown */
-        .scrollbar-thin::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-            background-color: #cbd5e1;
-            border-radius: 3px;
-        }
-    </style>
 </head>
 
 <body style="padding-top: 50px;">
@@ -62,34 +50,32 @@
         </div>
     </form>
 
-    <div id="product-section" class="product-section" style="margin-top: -30px;">
-        <div class="product-grid">
-            @foreach($products->take(5) as $product)
+    <div id="product-section" class="shop-product-section mt-8 px-8" style="padding-bottom: 20px;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            @foreach($products as $product)
+            @php
+            $productNameForFile = str_replace(' ', '-', $product->name);
+            $colors = $product->colour;
+
+            $firstColor = count($colors) > 0 ? strtolower($colors[0]) : null;
+            $mainImageBase = $firstColor ? $productNameForFile . '_' . $firstColor : $productNameForFile;
+
+            if (file_exists(public_path('products/' . $mainImageBase . '.png'))) {
+            $imagePath = '/products/' . $mainImageBase . '.png';
+            } elseif (file_exists(public_path('products/' . $mainImageBase . '.jpg'))) {
+            $imagePath = '/products/' . $mainImageBase . '.jpg';
+            } else {
+            $imagePath = '/products/default.png';
+            }
+            @endphp
+
             <div class="product-item">
-
-                @php
-                $productNameForFile = str_replace(' ', '-', $product->name);
-                $colors = $product->colour;
-
-                $firstColor = count($colors) > 0 ? strtolower($colors[0]) : null;
-                $mainImageBase = $firstColor ? $productNameForFile . '_' . $firstColor : $productNameForFile;
-
-                if (file_exists(public_path('products/' . $mainImageBase . '.png'))) {
-                $imagePath = '/products/' . $mainImageBase . '.png';
-                } elseif (file_exists(public_path('products/' . $mainImageBase . '.jpg'))) {
-                $imagePath = '/products/' . $mainImageBase . '.jpg';
-                } else {
-                $imagePath = '/products/default.png';
-                }
-
-                @endphp
-
                 <a class="product-image" href="{{ route('detailView', ['id' => $product->id]) }}">
-                    <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image">
+                    <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image" class="w-full h-48 object-cover rounded-md mb-3">
                 </a>
-                <h3 class="product-title">{{ $product->name }}</h3>
-                <div class="product-price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
-                <div class="color-options">
+                <h3 class="product-title font-semibold text-base mb-1">{{ $product->name }}</h3>
+                <div class="product-price text-sm text-gray-700 mb-2">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
+                <div class="color-options flex flex-wrap justify-center gap-1">
                     @foreach($colors as $color)
                     @php
                     $colorLower = strtolower($color);
@@ -102,7 +88,6 @@
                     } else {
                     $colorImage = '/products/default.png';
                     }
-
                     @endphp
                     <span class="color {{ $color }}"
                         data-color="{{ $color }}"

@@ -16,6 +16,7 @@
 
 <body>
     <x-navbar />
+
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" style="padding-top: 90px;">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -52,14 +53,17 @@
 
     <div class="product-section">
         <div class="tabs">
-            <span class="tab active link">Most Popular</span>
-            <span class="tab">New Arrival</span>
-            <span class="tab">Backpack</span>
-            <span class="tab">Pouch</span>
+            @php
+            $categories = ['Backpack', 'Tote Bag', 'Sling Bag', 'Pouch', 'Accessories'];
+            @endphp
+
+            @foreach($categories as $cat)
+            <span class="tab {{ $cat == $category ? 'active' : '' }}" data-category="{{ $cat }}">{{ $cat }}</span>
+            @endforeach
         </div>
 
         <div class="product-grid">
-            @foreach($products->take(5) as $product)
+            @foreach($products->take(4) as $product)
             <div class="product-item">
 
                 @php
@@ -79,9 +83,9 @@
 
                 @endphp
 
-                <div class="product-image">
+                <a class="product-image" href="{{ route('detailView', ['id' => $product->id]) }}">
                     <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image">
-                </div>
+                </a>
                 <h3 class="product-title">{{ $product->name }}</h3>
                 <div class="product-price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
                 <div class="color-options">
@@ -109,9 +113,11 @@
             </div>
             @endforeach
         </div>
-        <a href="{{ route('shopView') }}">
-            <button class="shop-all-btn">Shop All</button>
-        </a>
+        <div class="btn-shop-wrapper">
+            <a href="{{ route('shopView') }}">
+                <button class="shop-all-btn">Shop All</button>
+            </a>
+        </div>
     </div>
 
     <div class="why-container">
@@ -145,7 +151,7 @@
             <h3 style="font-weight: bold;">Discover cool styling ideas and how to rock your Exsport Bags in these videos!</h3>
             <div class="video-slider-wrapper">
                 <div class="video-slider" id="videoSlider">
-                    <div class="video-item">
+                    <div class="video-item" data-product-id="13">
                         <div class="video-wrapper">
                             <video id="video1" preload="metadata">
                                 <source src="{{ asset('videos/video1.mp4') }}" type="video/mp4">
@@ -153,7 +159,7 @@
                             <button class="play-button" onclick="playVideo('video1', this)">▶</button>
                         </div>
                     </div>
-                    <div class="video-item">
+                    <div class="video-item" data-product-id="14">
                         <div class="video-wrapper">
                             <video id="video2" preload="metadata">
                                 <source src="{{ asset('videos/video2.mp4') }}" type="video/mp4">
@@ -161,7 +167,7 @@
                             <button class="play-button" onclick="playVideo('video2', this)">▶</button>
                         </div>
                     </div>
-                    <div class="video-item">
+                    <div class="video-item" data-product-id="3">
                         <div class="video-wrapper">
                             <video id="video3" preload="metadata">
                                 <source src="{{ asset('videos/video3.mp4') }}" type="video/mp4">
@@ -169,7 +175,7 @@
                             <button class="play-button" onclick="playVideo('video3', this)">▶</button>
                         </div>
                     </div>
-                    <div class="video-item">
+                    <div class="video-item" data-product-id="15">
                         <div class="video-wrapper">
                             <video id="video4" preload="metadata">
                                 <source src="{{ asset('videos/video4.mp4') }}" type="video/mp4">
@@ -177,7 +183,7 @@
                             <button class="play-button" onclick="playVideo('video4', this)">▶</button>
                         </div>
                     </div>
-                    <div class="video-item">
+                    <div class="video-item" data-product-id="18">
                         <div class="video-wrapper">
                             <video id="video5" preload="metadata">
                                 <source src="{{ asset('videos/video5.mp4') }}" type="video/mp4">
@@ -185,12 +191,44 @@
                             <button class="play-button" onclick="playVideo('video5', this)">▶</button>
                         </div>
                     </div>
-                    <div class="video-item">
+                    <div class="video-item" data-product-id="17">
                         <div class="video-wrapper">
                             <video id="video6" preload="metadata">
                                 <source src="{{ asset('videos/video6.mp4') }}" type="video/mp4">
                             </video>
                             <button class="play-button" onclick="playVideo('video6', this)">▶</button>
+                        </div>
+                    </div>
+                    <div class="video-item" data-product-id="4">
+                        <div class="video-wrapper">
+                            <video id="video7" preload="metadata">
+                                <source src="{{ asset('videos/video7.mp4') }}" type="video/mp4">
+                            </video>
+                            <button class="play-button" onclick="playVideo('video7', this)">▶</button>
+                        </div>
+                    </div>
+                    <div class="video-item" data-product-id="16">
+                        <div class="video-wrapper">
+                            <video id="video8" preload="metadata">
+                                <source src="{{ asset('videos/video8.mp4') }}" type="video/mp4">
+                            </video>
+                            <button class="play-button" onclick="playVideo('video8', this)">▶</button>
+                        </div>
+                    </div>
+                    <div class="video-item" data-product-id="10">
+                        <div class="video-wrapper">
+                            <video id="video9" preload="metadata">
+                                <source src="{{ asset('videos/video9.mp4') }}" type="video/mp4">
+                            </video>
+                            <button class="play-button" onclick="playVideo('video9', this)">▶</button>
+                        </div>
+                    </div>
+                    <div class="video-item" data-product-id="16">
+                        <div class="video-wrapper">
+                            <video id="video10" preload="metadata">
+                                <source src="{{ asset('videos/video10.mp4') }}" type="video/mp4">
+                            </video>
+                            <button class="play-button" onclick="playVideo('video10', this)">▶</button>
                         </div>
                     </div>
                 </div>
@@ -202,64 +240,84 @@
         <div class="popup-content">
             <video id="popupVideo" controls></video>
             <div class="info">
-                <h2>Product Title</h2>
-                <p><strong>Color:</strong> Black / Blue</p>
-                <p><strong>Quantity:</strong> 1</p>
-                <p>This bag is perfect for your daily activities. Durable, stylish, and spacious.</p>
-                <button onclick="alert('More Info Clicked')">More Info</button>
-                <button onclick="alert('Added to Cart')">Add to Cart</button>
+                <img id="productImage" src="" alt="Product Image" style="width: 100%; max-width: 200px; border-radius: 12px;">
+                <h2 id="productTitle"></h2>
+                <div id="productPrice" class="product-price mt-2 text-gray-700 text-sm leading-relaxed"></div>
+                <div id="productDescription" class="product-description mt-2 text-gray-700 text-sm leading-relaxed">
+                </div>
+                <div class="btn-shop-wrapper">
+                    <a href="#">
+                        <button id="moreinfobtn" class="shop-all-btn">More Info</button>
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <section class="team" style="margin-left: 30px; margin-right: 30px;">
-        <div class="outlet-container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h3 style="font-weight: bold; justify-content: center; align-items: center; padding-bottom: 30px;">Informasi Outlet</h3>
-                    </div>
-                </div>
+    <section class="team">
+        <div class="container">
+            <div class="section-title">
+                <h3>Find Your Nearest Happy Spot!</h3>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <div class="imageL">
-                            <a href="https://maps.app.goo.gl/X4zYhaZW1Ry4cMgm6?g_st=iw" target="_blank"><img style="object-fit: cover;"
-                                    src="{{ asset('pictures/lokasi1.jpg') }}" alt=""></a>
-                        </div>
-                        <h4>Bandung</h4>
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                    <div class="team__item w-100">
+                        <a href="https://maps.app.goo.gl/X4zYhaZW1Ry4cMgm6?g_st=iw" target="_blank">
+                            <img src="{{ asset('pictures/lokasi1.jpg') }}" alt="Outlet Bandung Martadinata">
+                        </a>
+                        <h4>Bandung - Martadinata</h4>
                         <span>Jl. L. L. R.E. Martadinata No.4, Bandung</span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <div class="imageL">
-                            <a href="https://goo.gl/maps/tRThTyMRCY1jk1GM6" target="_blank"><img
-                                    src="{{ asset('pictures/lokasi2.jpg') }}" alt=""></a>
-                        </div>
-                        <h4>Bandung</h4>
+
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                    <div class="team__item w-100">
+                        <a href="https://goo.gl/maps/tRThTyMRCY1jk1GM6" target="_blank">
+                            <img src="{{ asset('pictures/lokasi2.jpg') }}" alt="Outlet Bandung Bahureksa">
+                        </a>
+                        <h4>Bandung - Bahureksa</h4>
                         <span>Jl. Bahureksa No.24, Citarum, Bandung</span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                    <div class="team__item w-100">
                         <div class="imageL">
                             <a href="https://goo.gl/maps/KLuiMGxET25L2Qco6" target="_blank"><img
                                     src="{{ asset('pictures/lokasi3.png') }}" alt=""></a>
                         </div>
                         <h4>Yogyakarta</h4>
-                        <span>Jl. C. Simanjuntak No.66B, Terban, Kec. Gondokusuman, Yogyakarta</span>
+                        <span>Jl. C. Simanjuntak No.66B, Terban, Yogyakarta</span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                    <div class="team__item w-100">
                         <div class="imageL">
                             <a href="https://g.co/kgs/fmZWGB" target="_blank"><img src="{{ asset('pictures/lokasi4.png') }}"
                                     alt=""></a>
                         </div>
                         <h4>Depok</h4>
                         <span>Jl. Margonda No.290, Kemiri Muka, Beji, Depok</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex" style="padding-top: 20px;">
+                    <div class="team__item w-100">
+                        <div class="imageL">
+                            <a href="https://g.co/kgs/fmZWGB" target="_blank"><img src="{{ asset('pictures/lokasi5.png') }}"
+                                    alt=""></a>
+                        </div>
+                        <h4>Jakarta</h4>
+                        <span>Pondok Indah Mall 2, South Skywalk 1st Floor, Jl. Metro Pondok Indah, Jakarta Selatan</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex" style="padding-top: 20px;">
+                    <div class="team__item w-100">
+                        <div class="imageL">
+                            <a href="https://g.co/kgs/fmZWGB" target="_blank"><img src="{{ asset('pictures/lokasi4.png') }}"
+                                    alt=""></a>
+                        </div>
+                        <h4>Semarang</h4>
+                        <span>Jl. Brigjen Katamso, Semarangk</span>
                     </div>
                 </div>
             </div>
@@ -278,11 +336,22 @@
                 style="width: 900px; height: 450px;">
         </div>
     </div>
-
-    <x-footer />>
+    <x-sidecart />
+    <x-footer />
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    document.querySelectorAll('.tabs .tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+            window.location.href = '/?category=' + encodeURIComponent(category);
+        });
+    });
+
+    function toggleCartPopup() {
+        document.getElementById('cartPopup').classList.toggle('hidden');
+    }
+
     function playVideo(videoId, btn) {
         const video = document.getElementById(videoId);
         const popup = document.getElementById('videoPopup');
@@ -291,6 +360,26 @@
         popupVideo.src = video.querySelector('source').src;
         popupVideo.load();
         popupVideo.play();
+
+        const productId = btn.closest('.video-item').getAttribute('data-product-id');
+
+        fetch(`/product-detail/${productId}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Full data response:", data);
+                document.getElementById("productTitle").textContent = data.title;
+                document.getElementById("productPrice").textContent = "Rp" + parseInt(data.price).toLocaleString('id-ID');
+                document.getElementById("productPrice").textContent = "Rp" + parseInt(data.price).toLocaleString('id-ID');
+                document.getElementById("productDescription").innerHTML =
+                    JSON.parse(data.description).map(item => `<p>${item}</p>`).join("");
+                document.getElementById("productImage").src = data.image;
+            })
+            .catch(error => console.error("Error fetching product:", error));
+
+        const moreInfoBtn = document.getElementById('moreinfobtn');
+        if (moreInfoBtn) {
+            moreInfoBtn.dataset.productId = productId;
+        }
 
         popup.style.display = 'flex';
 
@@ -315,6 +404,13 @@
             }, 300);
         }
     }
+
+    document.getElementById('moreinfobtn').addEventListener('click', function() {
+        const productId = this.dataset.productId;
+        if (productId) {
+            window.location.href = `/detail/${productId}`;
+        }
+    });
 </script>
 
 </html>

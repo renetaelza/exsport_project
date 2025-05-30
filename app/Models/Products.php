@@ -12,4 +12,8 @@ class Products extends Model
     protected $casts = [
         'colour' => 'array',
     ];
+
+    protected $casts2 = [
+        'description' => 'array',
+    ];
 }

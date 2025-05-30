@@ -13,12 +13,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<!-- euy jir -->
 
-<body style="padding-top: 80px;">
+<body class="shop-details-body" style="padding-top: 80px;">
     <x-navbar2 />
     <div class="max-w-[1200px] mx-auto flex flex-col lg:flex-row px-4 py-6 gap-6">
-        <!-- Left side thumbnails -->
         <div class="hidden lg:flex flex-col gap-4 pr-6 border-r border-[#f6f0e3]">
             @foreach ($product->colour as $color)
             @php
@@ -34,7 +32,11 @@
             }
             @endphp
 
-            <button aria-label="Select product image {{ $color }}" class="opacity-50 hover:opacity-100">
+            <button
+                aria-label="Select product image {{ $color }}"
+                class="cursor-pointer hover:opacity-80 transition duration-200"
+                data-color="{{ $colorLower }}"
+                onclick="scrollToColorImage('{{ $product->id }}', '{{ $colorLower }}')">
                 <img
                     alt="Thumbnail {{ $color }}"
                     class="w-10 h-10 object-contain"
@@ -45,13 +47,9 @@
             @endforeach
         </div>
 
-        <!-- Left side thumbnails END -->
-
-        <!-- Main image and arrows with product info slidder -->
         <div class="container product-scroll-wrapper">
             <div class="product-content">
-                <!-- Main image -->
-                <a class="img" href="{{ route('detailView', ['id' => $product->id]) }}">
+                <a class="detail-image" href="{{ route('detailView', ['id' => $product->id]) }}">
                     <div id="product-images-{{ $product->id }}" class="flex flex-col gap-6">
                         @foreach ($product->colour as $color)
                         @php
@@ -71,7 +69,7 @@
                             id="product-image-{{ $product->id }}-{{ $colorLower }}"
                             src="{{ $imgPath }}"
                             alt="Product Image - {{ $color }}"
-                            class="w-full max-h-[500px] object-contain" />
+                            class="w-full max-h-[500px] object-contain foto-detail" />
                         @endforeach
                     </div>
 
@@ -79,10 +77,23 @@
 
                 <!-- Product details -->
                 <div class="product-details">
-                    <h3 class="product-title">{{ $product->name }}</h3>
+                    <h3 class="product-title-detail">{{ $product->name }}</h3>
                     <p><strong>Harga:</strong> Rp{{ number_format($product->price, 0, ',', '.') }}</p>
-                    <p><strong>Deskripsi:</strong> {{ $product->description }}</p>
-                    <p><strong>Kategori:</strong> {{ $product->category }}</p>
+                    @php
+                    $descriptions = json_decode($product->description);
+                    @endphp
+
+                    <p><strong>Deskripsi:</strong></p>
+                    <div class="text-sm text-gray-700" style="font-size: 15px;">
+                        @if($descriptions)
+                        @foreach($descriptions as $desc)
+                        <div>{{ $desc }}</div>
+                        @endforeach
+                        @else
+                        <div>Tidak ada deskripsi tersedia.</div>
+                        @endif
+                    </div>
+                    <p style="padding-top: 10px;"><strong>Kategori:</strong> {{ $product->category }}</p>
 
                     <div class="product-color-selection">
                         <span class="product-color-label">
@@ -113,9 +124,15 @@
 
                         </div>
                     </div>
-                    <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="product-add-to-cart-btn transition">
+                    <button
+                        class="product-add-to-cart-btn transition"
+                        data-id="{{ $product->id }}"
+                        data-name="{{ $product->name }}"
+                        data-price="{{ $product->price }}"
+                        data-image="{{ $imgPath }}"
+                        onclick="handleAddToCartFromButton(this)">
                         Add to Cart | <strong>Harga: Rp{{ number_format($product->price, 0, ',', '.') }}</strong>
-                    </a>
+                    </button>
                 </div>
                 <!-- Product details END -->
             </div>
@@ -132,34 +149,32 @@
     </div>
 
 
-    <div id="product-section" class="product-section" style="margin-top: -30px;">
-        <div class="product-grid">
+    <div id="product-section" class="shop-product-section mt-8 px-8" style="padding-bottom: 20px;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             @foreach($products as $product)
+            @php
+            $productNameForFile = str_replace(' ', '-', $product->name);
+            $colors = $product->colour;
+
+            $firstColor = count($colors) > 0 ? strtolower($colors[0]) : null;
+            $mainImageBase = $firstColor ? $productNameForFile . '_' . $firstColor : $productNameForFile;
+
+            if (file_exists(public_path('products/' . $mainImageBase . '.png'))) {
+            $imagePath = '/products/' . $mainImageBase . '.png';
+            } elseif (file_exists(public_path('products/' . $mainImageBase . '.jpg'))) {
+            $imagePath = '/products/' . $mainImageBase . '.jpg';
+            } else {
+            $imagePath = '/products/default.png';
+            }
+            @endphp
+
             <div class="product-item">
-
-                @php
-                $productNameForFile = str_replace(' ', '-', $product->name);
-                $colors = $product->colour;
-
-                $firstColor = count($colors) > 0 ? strtolower($colors[0]) : null;
-                $mainImageBase = $firstColor ? $productNameForFile . '_' . $firstColor : $productNameForFile;
-
-                if (file_exists(public_path('products/' . $mainImageBase . '.png'))) {
-                $imagePath = '/products/' . $mainImageBase . '.png';
-                } elseif (file_exists(public_path('products/' . $mainImageBase . '.jpg'))) {
-                $imagePath = '/products/' . $mainImageBase . '.jpg';
-                } else {
-                $imagePath = '/products/default.png';
-                }
-
-                @endphp
-
                 <a class="product-image" href="{{ route('detailView', ['id' => $product->id]) }}">
-                    <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image">
+                    <img id="product-image-{{ $product->id }}" src="{{ $imagePath }}" alt="Product Image" class="w-full h-48 object-cover rounded-md mb-3">
                 </a>
-                <h3 class="product-title">{{ $product->name }}</h3>
-                <div class="product-price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
-                <div class="color-options">
+                <h3 class="product-title font-semibold text-base mb-1">{{ $product->name }}</h3>
+                <div class="product-price text-sm text-gray-700 mb-2">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
+                <div class="color-options flex flex-wrap justify-center gap-1">
                     @foreach($colors as $color)
                     @php
                     $colorLower = strtolower($color);
@@ -172,7 +187,6 @@
                     } else {
                     $colorImage = '/products/default.png';
                     }
-
                     @endphp
                     <span class="color {{ $color }}"
                         data-color="{{ $color }}"
@@ -185,12 +199,11 @@
             @endforeach
         </div>
     </div>
-
+    <x-sidecart />
     <x-footer />
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Scrolling effect for product details and image
     document.addEventListener("DOMContentLoaded", () => {
         const wrapper = document.querySelector('.product-scroll-wrapper');
         const details = wrapper.querySelector('.product-details');
@@ -220,13 +233,11 @@
                 }
                 e.preventDefault();
             }
-            // phase 3: biarkan browser scroll normal ke konten selanjutnya
         }, {
             passive: false
         });
     });
 
-    // Change image on color selection
     function changeImage(productId, element) {
         const newImage = element.getAttribute('data-image');
         const imgElement = document.getElementById('product-image-' + productId);
@@ -240,7 +251,6 @@
         }
     }
 
-
     function scrollToColorImage(productId, color) {
         const imageElement = document.getElementById(`product-image-${productId}-${color}`);
         if (imageElement) {
@@ -250,6 +260,52 @@
             });
         }
     }
+
+    function getSelectedColor() {
+        const selected = document.querySelector('.product-vars button.active');
+        return selected ? selected.getAttribute('data-color') : null;
+    }
+
+    function handleAddToCart(product) {
+        const existing = cart.find(item => item.id === product.id && item.color === product.color);
+        if (!existing) {
+            cart.push({
+                ...product,
+                quantity: 1
+            });
+        } else {
+            existing.quantity += 1;
+        }
+        renderCart();
+        toggleCartPopup();
+    }
+
+    function handleAddToCartFromButton(button) {
+        const product = {
+            id: button.getAttribute('data-id'),
+            name: button.getAttribute('data-name'),
+            price: parseFloat(button.getAttribute('data-price')),
+            image: button.getAttribute('data-image'),
+            color: getSelectedColor() || 'default'
+        };
+
+        handleAddToCart(product);
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const colorButtons = document.querySelectorAll('.product-vars button');
+        if (colorButtons.length > 0) {
+            colorButtons[0].classList.add('active');
+        }
+
+        colorButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                colorButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    });
 </script>
 
 
