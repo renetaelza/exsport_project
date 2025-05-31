@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -26,22 +25,17 @@
         </div>
     </div>
 
-    <form id="filterForm" method="GET" action="{{route('shopView')}}" class="flex justify-center items-center gap-4 py-6">
-        {{-- Dropdown Category --}}
+    <form id="filterForm" method="GET" action="{{ route('shopView') }}" class="flex justify-center items-center gap-4 py-6">
         <select name="category" id="categorySelect" class="focus:outline-none focus:ring-0 focus:border-none">
             <option value="">All</option>
             @foreach($categories as $cat)
-            @php
-            $displayCat = ucwords(str_replace('_', ' ', $cat));
-            @endphp
+            @php $displayCat = ucwords(str_replace('_', ' ', $cat)); @endphp
             <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
                 {{ $displayCat }}
             </option>
             @endforeach
         </select>
 
-
-        {{-- Input Search --}}
         <div class="flex items-center border border-gray-300 rounded-full px-4 py-2 w-full max-w-md">
             <i class="bi bi-search text-gray-500 mr-2"></i>
             <input type="text" name="search" id="searchInput" placeholder="Search products..."
@@ -86,7 +80,7 @@
                     } elseif (file_exists(public_path('products/' . $colorImageBase . '.jpg'))) {
                     $colorImage = '/products/' . $colorImageBase . '.jpg';
                     } else {
-                    $colorImage = '/products/default.png';
+                    $imagePath = '/products/default.png';
                     }
                     @endphp
                     <span class="color {{ $color }}"
@@ -96,13 +90,13 @@
                     </span>
                     @endforeach
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
-    </div>
 
-    <x-footer />
+        <x-footer />
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -128,7 +122,6 @@
             clearTimeout(typingTimer);
         });
     });
-
 
     function changeImage(productId, element) {
         const newImage = element.getAttribute('data-image');
