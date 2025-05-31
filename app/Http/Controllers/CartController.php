@@ -7,55 +7,97 @@ use App\Models\Products;
 
 class CartController extends Controller
 {
-    // Tambah produk ke keranjang
-    public function add(Request $request, $id)
+    public function addToCart(Request $request)
     {
+        $data = $request->validate([
+            'product_id' => 'required|integer',
+            'quantity' => 'nullable|integer|min:1',
+            'color' => 'nullable|string',
+        ]);
+
+        $product = Products::findOrFail($data['product_id']);
+
         $cart = session()->get('cart', []);
 
-        if (isset($cart[$id])) {
-            $cart[$id]++;
-        } else {
-            $cart[$id] = 1;
+        $newProduct = [
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'color' => $data['color'] ?? '',
+            'quantity' => $data['quantity'] ?? 1,
+        ];
+
+        $found = false;
+        foreach ($cart as &$item) {
+            if ($item['id'] == $newProduct['id'] && $item['color'] == $newProduct['color']) {
+                $item['quantity'] += $newProduct['quantity'];
+                $found = true;
+                break;
+            }
+        }
+        unset($item);
+
+        if (!$found) {
+            $cart[] = $newProduct;
         }
 
         session(['cart' => $cart]);
 
-        return redirect()->route('cart.index')->with('success', 'Produk berhasil ditambahkan!');
+        return response()->json([
+            'status' => 'success',
+            'cart' => $cart
+        ]);
     }
 
-    // Tampilkan halaman keranjang
-    public function index()
-    {
-        $cart = session('cart', []);
-        $products = Products::whereIn('id', array_keys($cart))->get();
-
-        return view('cart', compact('cart', 'products'));
-    }
-
-    // Update jumlah produk
-    public function update(Request $request, $id)
-    {
-        $quantity = $request->input('quantity');
-        $cart = session()->get('cart', []);
-
-        if (isset($cart[$id]) && $quantity > 0) {
-            $cart[$id] = $quantity;
-            session(['cart' => $cart]);
-        }
-
-        return redirect()->route('cart.index')->with('success', 'Jumlah produk diperbarui!');
-    }
-
-    // Hapus produk dari keranjang
-    public function remove($id)
+    public function getCartSession()
     {
         $cart = session()->get('cart', []);
+        foreach ($cart as &$item) {
+            $product = Products::find($item['id']);
+            if ($product) {
+                $item['price'] = $product->price;
+            }
+        }
+        session(['cart' => $cart]);
 
-        if (isset($cart[$id])) {
-            unset($cart[$id]);
-            session(['cart' => $cart]);
+        return response()->json($cart);
+    }
+
+
+    public function updateCartItem(Request $request)
+    {
+        $data = $request->validate([
+            'index' => 'required|integer',
+            'quantity' => 'required|integer|min:0',
+        ]);
+
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$data['index']])) {
+            if ($data['quantity'] > 0) {
+                $cart[$data['index']]['quantity'] = $data['quantity'];
+            } else {
+                array_splice($cart, $data['index'], 1);
+            }
         }
 
-        return redirect()->route('cart.index')->with('success', 'Produk dihapus dari keranjang!');
+        session(['cart' => $cart]);
+
+        return response()->json(['cart' => $cart]);
+    }
+
+    public function removeCartItem(Request $request)
+    {
+        $data = $request->validate(['index' => 'required|integer']);
+
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$data['index']])) {
+            array_splice($cart, $data['index'], 1);
+        }
+
+        session(['cart' => $cart]);
+
+        return response()->json(['cart' => $cart]);
     }
 }

@@ -11,6 +11,7 @@ class ShopController extends Controller
     public function view()
     {
         $products = Products::all();
+        $cart = session('cart', []);
         return view('landing', ['products' => $products]);
     }
 

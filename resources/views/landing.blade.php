@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Exsport Bags</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -167,7 +168,7 @@
                             <button class="play-button" onclick="playVideo('video2', this)">▶</button>
                         </div>
                     </div>
-                    <div class="video-item" data-product-id="3">
+                    <div class="video-item" data-product-id="19">
                         <div class="video-wrapper">
                             <video id="video3" preload="metadata">
                                 <source src="{{ asset('videos/video3.mp4') }}" type="video/mp4">
@@ -243,17 +244,14 @@
                 <img id="productImage" src="" alt="Product Image" style="width: 100%; max-width: 200px; border-radius: 12px;">
                 <h2 id="productTitle"></h2>
                 <div id="productPrice" class="product-price mt-2 text-gray-700 text-sm leading-relaxed"></div>
-                <div id="productDescription" class="product-description mt-2 text-gray-700 text-sm leading-relaxed">
-                </div>
+                <div id="productDescription" class="product-description mt-2 text-gray-700 text-sm leading-relaxed"></div>
                 <div class="btn-shop-wrapper">
-                    <a href="#">
-                        <button id="moreinfobtn" class="shop-all-btn">More Info</button>
-                    </a>
+                    <a href="#"><button id="moreinfobtn" class="shop-all-btn">More Info</button></a>
                 </div>
-
             </div>
         </div>
     </div>
+
 
     <section class="team">
         <div class="container">
@@ -371,7 +369,8 @@
                 document.getElementById("productPrice").textContent = "Rp" + parseInt(data.price).toLocaleString('id-ID');
                 document.getElementById("productPrice").textContent = "Rp" + parseInt(data.price).toLocaleString('id-ID');
                 document.getElementById("productDescription").innerHTML =
-                    JSON.parse(data.description).map(item => `<p>${item}</p>`).join("");
+                    data.description.map(item => `<p>${item}</p>`).join("");
+
                 document.getElementById("productImage").src = data.image;
             })
             .catch(error => console.error("Error fetching product:", error));

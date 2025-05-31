@@ -1,3 +1,5 @@
+@include('components.sidecart')
+
 <header class="header bg-white">
     <div class="container-fluid px-4">
         <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between align-items-center">

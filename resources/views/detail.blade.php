@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Shop Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -79,19 +80,16 @@
                 <div class="product-details">
                     <h3 class="product-title-detail">{{ $product->name }}</h3>
                     <p><strong>Harga:</strong> Rp{{ number_format($product->price, 0, ',', '.') }}</p>
-                    @php
-                    $descriptions = json_decode($product->description);
-                    @endphp
-
                     <p><strong>Deskripsi:</strong></p>
                     <div class="text-sm text-gray-700" style="font-size: 15px;">
-                        @if($descriptions)
-                        @foreach($descriptions as $desc)
+                        @if($product->description)
+                        @foreach($product->description as $desc)
                         <div>{{ $desc }}</div>
                         @endforeach
                         @else
                         <div>Tidak ada deskripsi tersedia.</div>
                         @endif
+
                     </div>
                     <p style="padding-top: 10px;"><strong>Kategori:</strong> {{ $product->category }}</p>
 
@@ -266,31 +264,27 @@
         return selected ? selected.getAttribute('data-color') : null;
     }
 
-    function handleAddToCart(product) {
-        const existing = cart.find(item => item.id === product.id && item.color === product.color);
-        if (!existing) {
-            cart.push({
-                ...product,
-                quantity: 1
-            });
-        } else {
-            existing.quantity += 1;
-        }
-        renderCart();
-        toggleCartPopup();
+    function handleAddToCartFromButton(button) {
+        const product = {
+            product_id: parseInt(button.getAttribute('data-id')),
+            quantity: 1,
+            color: getSelectedColor() || 'default',
+        };
+
+        addToCart(product);
     }
+
 
     function handleAddToCartFromButton(button) {
         const product = {
-            id: button.getAttribute('data-id'),
-            name: button.getAttribute('data-name'),
-            price: parseFloat(button.getAttribute('data-price')),
-            image: button.getAttribute('data-image'),
-            color: getSelectedColor() || 'default'
+            product_id: parseInt(button.getAttribute('data-id')),
+            quantity: 1,
+            color: getSelectedColor() || 'default',
         };
 
-        handleAddToCart(product);
+        addToCart(product);
     }
+
 
 
     document.addEventListener("DOMContentLoaded", () => {

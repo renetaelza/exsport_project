@@ -24,12 +24,6 @@ session_start();
     <div class="login-container">
         <h1 class="text-center mb-4" style="font-weight: 800; padding-top: 60px;">Welcome Back!</h1>
         <br>
-        <?php
-        if (isset($_SESSION['message'])) {
-            echo "<p>" . $_SESSION['message'] . "</p>";
-            unset($_SESSION['message']);
-        }
-        ?>
         <form class="formLogin" action="{{route('user.login')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="email" name="email" placeholder="Email" required />

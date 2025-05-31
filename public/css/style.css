@@ -284,6 +284,12 @@
 .color.fuchsia {
     background-color: fuchsia;
 }
+.color.lightbrown {
+    background-color: burlywood;
+}
+.color.skyblue {
+    background-color: skyblue;
+}
 
 .product-vars button.active {
     outline: 2px solid black;
@@ -456,8 +462,9 @@
     background: #fff;
     color: #333;
     border-radius: 20px;
-    max-width: 95vw;
-    max-height: 95vh;
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     flex-wrap: wrap;

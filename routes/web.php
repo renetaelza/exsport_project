@@ -27,6 +27,12 @@ Route::get('/product-detail/{id}', [ShopController::class, 'getProduct']);
 // LOGIN REGISTER USER
 Route::get('/loginUser', [LoginController::class, 'showLoginForm'])->middleware('notAdmin')->name('loginUser');
 Route::post('/loginUser', [LoginController::class, 'login'])->name('user.login');
+Route::get('/check-session', function () {
+    return response()->json([
+        'isLogin' => session()->has('isLogin') && session('isLogin') === true,
+    ]);
+});
+
 
 Route::get('/registerUser', [RegisterController::class, 'showRegisterForm'])->middleware('notAdmin')->name('registerUser');
 Route::post('/registerUser', [RegisterController::class, 'create'])->name('user.create');
@@ -34,15 +40,22 @@ Route::post('/registerUser', [RegisterController::class, 'create'])->name('user.
 Route::get('/account', [LoginController::class, 'showAccount'])->middleware('notAdmin')->name('account');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// SHOP & CART
-Route::get('/cartView', [CartController::class, 'showCart'])->name('cartView');
+// SHOP
 Route::get('/shop', [ShopController::class, 'shopView'])->name('shopView');
-// ADD TO CART
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
-Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::prefix('cart')->group(function () {
+    Route::post('/add', [CartController::class, 'addToCart']);
+    Route::get('/session', [CartController::class, 'getCartSession']);
+    Route::post('/update', [CartController::class, 'updateCartItem']);
+    Route::post('/remove', [CartController::class, 'removeCartItem']);
+});
 
+
+
+// Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+// Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+// Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+// Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+// Route::get('/cartView', [CartController::class, 'showCart'])->name('cartView');
 // DETAIL PRODUCT
 Route::get('/detail/{id}', [DetailController::class, 'showDetail'])->name('detailView');
 
